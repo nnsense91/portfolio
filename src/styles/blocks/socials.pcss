@@ -1,0 +1,37 @@
+.socials {
+  &__list {
+    display: flex;
+  }
+  &__item:not(:first-child) {
+    margin-left: 40px;
+  }
+}
+
+.socials-ico {
+  fill: $text-color;
+  width: 25px;
+  height: 25px;
+  transition: 0.3s;
+  &:hover {
+    fill: $color-orange;
+  }
+}
+
+.socials--footer {
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid $text-color;
+    transition: 0.3s;
+    &:hover {
+      border: 1px solid $color-orange;
+    }
+  }
+  .socials__link {
+    margin-top: 5px;
+  }
+}

@@ -1,0 +1,41 @@
+.welcome {
+  background-image: url("~images/content/welcome-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $color-white;
+  position: relative;
+}
+
+.container-welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.welcome__content {
+  position: relative;
+  display: flex;
+}
+
+.welcome__title {
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 0.83;
+}
+
+.welcome__title-desc {
+  position: absolute;
+  left: -220px;
+  font-size: 18px;
+  line-height: 1.67;
+  text-align: right;
+  opacity: 0.5;
+}
+
+.welcome__pic-train {
+  position: absolute;
+  width: 100%;
+  bottom: -135px;
+  z-index: 2;
+}

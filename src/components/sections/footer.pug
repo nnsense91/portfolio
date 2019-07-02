@@ -1,0 +1,19 @@
+footer.footer.section
+    .container.container-footer
+        .footer__copyright &#169;&#160;2019
+        .footer__author-wrap
+            .footer__author-name Егоров Иван
+            .footer__author-desc Личный сайт <br>веб-разработчика
+        .footer__content
+            .footer__navigation__wrap
+                include ../blocks/navigation
+                +nav(["Главная","Обо мне","Навыки","Работы","Отзывы","Связаться"], "footer")   
+            .footer__row
+                .footer__col
+                    .about__site Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                    .footer__socials-wrap
+                        include ../blocks/socials
+                        +socials("footer")
+                .footer__col
+                    article.footer__quote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                    .footer__quote-author Martin Golding
