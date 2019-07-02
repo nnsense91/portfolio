@@ -27,3 +27,7 @@ $ npm run имя_скрипта
 ```sh
 $ yarn имя_скрипта
 ```
+
+Егоров Иван Владимирович, 25.06.2019
+
+https://github.com/nnsense91/portfolio.git
