@@ -1,8 +1,14 @@
 .navigation {
-  width: 50%;
+  width: 46%;
   color: $color-white;
+  display: flex;
+  align-items: center;
+  @include desktop {
+    width: 70%;
+  }
 }
 .navigation__list {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }

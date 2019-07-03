@@ -58,18 +58,21 @@
 }
 
 .reviews__wrap {
-  margin-top: 100px;
+  margin-top: 85px;
   padding-bottom: 30px;
 }
 .reviews__list {
   display: flex;
   height: 210px;
+  margin-left: 25px;
 }
 
 .reviews__item {
   display: flex;
   width: 30%;
-  margin-left: 75px;
+  &:not(:first-child) {
+    margin-left: 65px;
+  }
 }
 
 .reviews__quote-ico {
@@ -102,6 +105,7 @@
   flex-direction: column;
   justify-content: space-around;
   margin-left: 30px;
+  margin-top: 20px;
 }
 
 .reviews__author-name {

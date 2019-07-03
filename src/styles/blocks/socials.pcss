@@ -1,4 +1,6 @@
 .socials {
+  display: flex;
+  align-items: center;
   &__list {
     display: flex;
   }
@@ -18,7 +20,7 @@
 }
 
 .socials--footer {
-  li {
+  li {    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +32,9 @@
     &:hover {
       border: 1px solid $color-orange;
     }
+  }
+  .socials__item:not(:first-child) {
+    margin-left: 20px;
   }
   .socials__link {
     margin-top: 5px;

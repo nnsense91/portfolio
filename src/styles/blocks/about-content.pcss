@@ -77,9 +77,20 @@
 }
 
 .about__this-site {
+  position: relative;
   margin-top: 90px;
   font-size: 16px;
   font-weight: normal;
   font-style: italic;
   line-height: 1.88;
+  &::before {    
+    content:"";
+    position: absolute;
+    left: -35px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    background: url("~images/content/star.png");
+    opacity: .3;
+  }
 }
