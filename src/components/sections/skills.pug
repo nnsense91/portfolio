@@ -1,21 +1,8 @@
 section.skills.section
-    +image("content/hands.png", "skills__hands", "", "presentation")
     .container.skills__container
         .skills__title-wrap
             h2.skills__title.section__title Чем я могу быть полезен вам
-            p.skills__title-desc Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-        .skills__content
-            h3.skills__row-name Front-end
-            include ../blocks/circle
-            ul.skills__row
-                +circle(["HTML5"],["-25"])
-                +circle(["CSS3"],["-15"])
-                +circle(["javascript"],["-75"])
-                +circle(["jquery и Vue.js"],["-15"])
-            h3.skills__row-name Workflow
-            include ../blocks/circle
-            ul.skills__row
-                +circle(["GIT"],["-15"])
-                +circle(["Terminal"],["-25"])
-                +circle(["Gulp"],["-50"])
-                +circle(["Webpack"],["-65"])
+            .skills__title-desc.main-text
+            p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+        include ../blocks/skills-grid
+           

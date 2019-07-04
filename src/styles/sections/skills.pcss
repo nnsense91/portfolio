@@ -4,6 +4,15 @@
   padding-top: 140px;
   position: relative;
   padding-bottom: 144px;
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url("~images/content/hands.png") 0 100%/contain no-repeat;
+    height: 100%;
+    width: 40%;
+    left: 0;
+  }
 }
 
 .skills__container {
@@ -26,11 +35,6 @@
 
 .skills__title-desc {
   margin-top: 48px;
-
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.88;
-  color: rgba(255, 255, 255, 0.5);
 }
 
 .skills__content {
