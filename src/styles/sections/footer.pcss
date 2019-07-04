@@ -4,8 +4,16 @@ footer {
   padding: 85px 0 84px;
 }
 
-.container-footer {
+.footer__container {
   display: flex;
+}
+
+.footer__personal {
+  display: flex;
+  width: 38%;
+  @include desktop {
+    flex-direction: column;
+  }
 }
 
 .footer__copyright {
@@ -14,10 +22,12 @@ footer {
 }
 
 .footer__author-wrap {
-  width: 15%;
   margin-left: 60px;
   display: flex;
   flex-direction: column;
+  @include desktop {
+    margin-left: 0;
+  }
 }
 
 .footer__author-name {
