@@ -13,8 +13,7 @@
   width: 57%;
 }
 
-.about__avatar-block {
-  object-fit: contain;
+.about__avatar-block {  
   overflow: hidden;
   border-radius: 50%;
   width: 200px;
@@ -23,8 +22,7 @@
 }
 
 .about__avatar {
-  width: 100%;
-  height: 100%;
+  object-fit: contain;
 }
 
 .about__info {
@@ -41,13 +39,11 @@
 .about__row-name {
   width: 50%;
   opacity: 0.15;
-  font-size: 16px;
   font-weight: 600;
   color: $color-white;
 }
 
 .about__row-data {
-  font-size: 16px;
   font-weight: 600;
   color: $color-white;
 }
@@ -57,14 +53,11 @@
   color: $color-white;
 }
 
-.about__description > div {
-  &:not(.about__name) {
-    opacity: 0.5;
-  }
+.about__description {
 }
 
 .about__greeting {
-  margin-top: 2px;
+  margin-top: 2px;  
 }
 
 .about__name {
@@ -79,8 +72,6 @@
 .about__this-site {
   position: relative;
   margin-top: 90px;
-  font-size: 16px;
-  font-weight: normal;
   font-style: italic;
   line-height: 1.88;
   &::before {    
