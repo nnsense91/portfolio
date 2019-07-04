@@ -2,22 +2,22 @@ section.contacts.section
     +image("content/leaf2.png", "reviews__littleleaf2", "", "presentation")
     +image("content/leafMid.png", "reviews__leaf-mid", "", "presentation")
     .container.contacts__container
-        h2.contacts__title Связаться со мной
+        h2.contacts__title.section__title Связаться со мной
         form.form
             .form__row                
                 .input__wrap
-                    label.form__label(for="name") Введите ваше имя
+                    label.form__label.main-text(for="name") Введите ваше имя
                     .form__data
                         +icon("avatar", "form__ico form__ico-user")
                         input(type="text", id="name", class="form__input form__input-name", placeholder="Ковальчук Дмитрий" autocomplete="off")
                 .input__wrap
-                    label.form__label(for="e-mail") Введите ваш email
+                    label.form__label.main-text(for="e-mail") Введите ваш email
                     .form__data
                         +icon("envelope", "form__ico form__ico-mail")
                         input(type="text", id="e-mail", class="form__input form__input-email", placeholder="loftschool@study.com" autocomplete="off")
             .form__row
                 .input__wrap.input__wrap--message
-                    label.form__label(for="message") Сообщение к письму
+                    label.form__label.main-text(for="message") Сообщение к письму
                     .form__data
                         +icon("chat", "form__ico form__ico-message")
                         textarea(cols="30", rows="2", id="message", class="form__message", placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса" autocomplete="off")
