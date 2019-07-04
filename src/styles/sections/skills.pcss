@@ -12,6 +12,7 @@
 }
 
 .skills__title-wrap {
+  position: relative;
   align-self: center;
   width: 40%;
   display: flex;
@@ -20,6 +21,7 @@
 
 .skills__title {
   font-size: 30px;
+  z-index: 1;
 }
 
 .skills__title-desc {
@@ -38,6 +40,7 @@
 }
 
 .skills__row {
+  position: relative;
   display: flex;
   &:not(:last-child) {
     margin-bottom: 48px;
@@ -45,10 +48,10 @@
 }
 
 .skills__row-name {
+  position: relative;
   font-size: 24px;
   font-weight: bold;
   color: #ffffff;
-
   margin-bottom: 40px;
 }
 
@@ -78,6 +81,11 @@
   width: 80%;
 }
 
-.skills__hands {
+.skills__hands {  
   position: absolute;
+  @include desktop {
+    transform: scale(0.6);
+    left: -150px;
+    bottom: -270px
+  }
 }
