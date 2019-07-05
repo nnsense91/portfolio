@@ -1,0 +1,25 @@
+.navigation {
+  width: 46%;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  @include desktop {
+    width: 70%;
+  }
+}
+.navigation__list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation__item {
+  transition: 0.3s;
+  &:hover {
+    color: $color-orange;
+  }
+}
+
+.navigation--footer {
+  width: 80%;
+}

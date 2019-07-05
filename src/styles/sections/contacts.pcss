@@ -1,0 +1,131 @@
+.contacts {
+  position: relative;
+  z-index: 1;
+  padding-top: 170px;
+  padding-bottom: 150px;
+}
+
+.contacts__title {
+  font-size: 36px;
+  font-weight: bold;
+  color: $color-white;
+}
+
+.form {
+  margin-top: 65px;
+  width: 59%;
+}
+
+.form__ico {
+  fill: $text-color;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-right: 20px;
+}
+
+.form__ico-message {
+  align-self: auto;
+  margin-top: 10px;
+}
+
+.form__row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  &:not(:first-child) {
+    margin-top: 25px;
+  }
+}
+
+.form__label {
+  padding-left: 50px;
+  width: 90%;
+  line-height: 1.88;
+  opacity: .3;
+}
+
+.input__wrap {
+  padding-top: 10px;
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__line {
+}
+
+.input__wrap--message {
+  width: 100%;
+}
+
+.form__input {
+  width: 90%;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2.67;
+  color: $color-white;
+  outline: none;
+  &::placeholder {
+    color: $color-white;
+  }
+  &:focus + svg {
+    fill: $color-orange;
+  }
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+}
+
+.form__data {
+  margin-top: 10px;
+  display: flex;
+  border-bottom: 1px solid $color-white;
+}
+
+.form__message {
+  width: 60%;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2;
+  color: $color-white;
+  outline: none;
+  padding-bottom: 15px;
+  &::placeholder {
+    color: $color-white;
+  }
+  resize: none;
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+  &:focus + svg {
+    fill: $color-orange;
+  }
+}
+
+.form__submit {
+  margin-top: 35px;
+  width: 347px;
+  height: 80px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $color-white;
+  background: linear-gradient(to right, $color-orange, $color-orangeLight);
+}
+
+.form__data--active {
+  border-bottom: 1px solid $color-orange;
+}
+
+.form__ico--active {
+  fill: $color-orange;
+}
+
+input:-webkit-autofill {
+  box-shadow: inset 0 0 0 1000px #fff;
+}
