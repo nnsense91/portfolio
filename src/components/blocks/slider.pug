@@ -1,30 +1,24 @@
-.slider__content
-    .slider-wrap
-        .slider
-            +image("content/slide1.jpg", "slider__selected", "selected slide")
-        .slider__control-wrap
-            ul.slider__control-list
-                li.slider__control-item.slider__control-item1.slider__item--active
-                li.slider__control-item.slider__control-item2
-                li.slider__control-item.slider__control-item3
-                li.slider__control-item.slider__control-item4
-                li.slider__control-item.slider__control-item5
-    .slider.control-btns
-        .slider__control-btn.control-left
-            +icon("shortarrow", "slider__control-ico slider__control-left")
-        .slider__control-btn.control-right
-            +icon("shortarrow", "slider__control-ico slider__control-right")
-.slider__desc-block
-    .slider__number 1
-    .slider__desc
-        ul.slider__skill-list
-            li.slider__skill-item HTML
-            li.slider__skill-item CSS
-            li.slider__skill-item Javascript
-        h3.slider__desc-title Сайт школы образования
-        article.main-text.slider__desc-review Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-        a.slider__link
-            +icon("link", "slider__link-ico")
-            span.slider__link-text Посмотреть сайт
-
-
+.slider-wrap
+    .works-slider__display
+        .works-slider__content.works-slider__pic
+            +image("content/slide1.jpg", "works-slider__img", "Selected work")
+        button(type="button").works-slider__buttons
+            a(href="#").works-slider__btn.works-slider__btn_next.active
+                +icon("arrow-down", "works__arrow-icon")
+            a(href="#").works-slider__btn.works-slider__btn_prev
+                +icon("arrow-down", "works__arrow-icon")
+        ul.works-slider__previews
+            - var slides = ["slide1", "slide2", "slide3", "slide4"]
+            each slide in slides
+                li.works-slider__previews-item
+                    a(href="#").works-slider__previews-link
+                        +image("content/" + `${slide}.jpg`, "works-slider__previews-img", "Preview slide")
+    .works-slider__desc
+        ul.works-slider__tags
+            - var tags = ["HTML", "CSS", "Javascript"]
+            each tag in tags
+                li.works-slider__tag-item= tag
+        .works-slider__title Сайт школы образования
+        .works-slider__text.main-text
+            p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+        a(href="#").works-slider__link Посмотреть сайт

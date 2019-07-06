@@ -1,211 +1,197 @@
-//Слайдер
-.slider__content {
-  width: 65%;
-  height: 549px;
+.slider-wrap {
+  display: flex;
+}
+
+.works-slider__display {
+  width: 66%;
   position: relative;
   z-index: 2;
+  height: 550px;
+
+  &:before {    
+    content: "2";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    line-height: 1;
+    left: 100%;
+    font-size: 400px;
+    font-weight: 800;
+    margin-left: -60px;
+    color: $bg-number;
+  }  
+  @include phones {
+    width: 100%;
+    margin-bottom: 60px;
+    &:before {
+      display: none;
+    }
+  }
 }
 
-.slider-wrap {
+.works-slider__pic {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  position: relative;
 }
 
-.slider__desc-block {
-  position: relative;
-  right: 70px;
-  width: 40%;
-  display: flex;
-}
-
-.slider {
-  height: 100%;
-  position: absolute;
-  display: flex;
-}
-.slider__selected {
-  object-fit: contain;
-}
-
-li.slider__item {
+.works-slider__img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
-.slider__control-item {
-  width: 20%;
-  height: 100%;
-  background-size: cover;
-  cursor: pointer;  
-}
-
-.slider__item1 {
-  background-image: url("~images/content/slide1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.slider__item2 {
-  background-image: url("~images/content/slide2.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.slider__item3 {
-  background-image: url("~images/content/slide3.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.slider__item4 {
-  background-image: url("~images/content/slide4.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.slider__item5 {
-  background-image: url("~images/content/slide5.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.slider__item--active {
-  border: 1px solid $color-orange;
-}
-
-//Управление слайдером
-.slider__control-wrap {
+.works-slider__previews {
+  width: 73%;
+  height: 18%;
   display: flex;
   position: absolute;
-  overflow: hidden;
   right: 0;
   bottom: 11%;
-  width: 70%;
-  height: 100px;
+  z-index: 12;
 }
 
-.slider__control-list {
-  position: absolute;
-  width: 125%;
-  height: 100%;
-  display: flex;
-}
-
-
-.slider__control-item1 {
-  background-image: url("~images/content/slide1.jpg");
-}
-.slider__control-item2 {
-  background-image: url("~images/content/slide2.jpg");
-}
-.slider__control-item3 {
-  background-image: url("~images/content/slide3.jpg");
-}
-.slider__control-item4 {
-  background-image: url("~images/content/slide4.jpg");
-}
-.slider__control-item5 {
-  background-image: url("~images/content/slide5.jpg");
-}
-
-.slider.control-btns {
+.works-slider__previews-item {
   cursor: pointer;
+  transition: 0.1s;
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: $color-orange;
+    opacity: 0;
+  }
+
+  &.active,
+  &:hover {
+    margin-right: 3px;
+    outline: 3px solid #f29400;  
+    &:before {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: $color-orange;
+      opacity: 0.2;
+  }  
+  }
+
+  
+}
+
+.works-slider__previews-link {
+  width: 178px;
+  height: 100px;
+}
+
+.works-slider__previews-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.works-slider__buttons {
   position: absolute;
   display: flex;
-  flex-direction: column;
-  width: 50px;
-  height: 100px;
+  flex-direction: column;  
+  padding: 0;
   right: -50px;
   bottom: 11%;
 }
 
-.slider__control-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.works-slider__btn {
   width: 50px;
   height: 50px;
   background-color: $dblue-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+
   &:hover {
     background-color: $color-orange;
-  }
-
-  &:hover > .slider__control-ico {
-    fill: $color-white;
+    &> .works__arrow-icon {
+      opacity: 1;
+    }
   }
 }
 
-.slider__control-ico {
-  width: 14px;
-  height: 16px;
-  fill: $text-color;
-}
-
-.slider__control-left {
+.works__arrow-icon {
   fill: $color-white;
+  opacity: .3;
+  width: 10Px;
+  height: 10Px;    
 }
 
-.slider__control-right {
+.works-slider__btn_prev > .works__arrow-icon {
   transform: rotate(180deg);
-  fill: $text-color;
 }
 
-//Стили блока описания слайдера
-.slider__number {
-  font-size: 400px;
-  font-weight: 800;
-  color: $bg-number;
-  line-height: 1.25;
-  width: 40%;
+.active > .works__arrow-icon {
+  opacity: 1;
 }
 
-.slider__desc {
-  margin-left: 25px;
-  display: flex;
-  flex-direction: column;
-}
-
-.slider__skill-list {
-  display: flex;
-  justify-content: space-between;
-}
-
-.slider__skill-item {
-  padding: 10px 16px;
-  background-color: $bg-skills;
-  border-radius: 25px;
-
-  @include desktop {
-
+.works-slider__desc {
+  color: #000;
+  width: 33%;
+  position: relative;
+  padding-left: 163px;
+  z-index: 2;
+  @include phones {
+    padding: 0 5%;
+    text-align: left;
+    align-items: flex-start;
   }
 }
 
-.slider__desc-title {
+.works-slider__tags {
+  display: flex;
+}
+
+.works-slider__tag-item {
+  background-color: $bg-skills;
+  padding: 13px 19px;
+
+  &:not(:first-child) {
+    margin-left: 15px;
+  }
+
+  font-weight: 400;
+  color: $dblue-color;
+  border-radius: 25px;
+}
+
+.works-slider__title {
+  margin-top: 35px;
   font-size: 30px;
   font-weight: bold;
   line-height: 1.6;
   color: $dblue-color;
+}
+
+.works-slider__text {
+  color: $slider-descReview;
+  opacity: 0.7;
+  line-height: 1.88;
   margin-top: 30px;
 }
 
-.slider__desc-review {
-  margin-top: 25px;
-  line-height: 1.88;
-  color: $slider-descReview;
-  opacity: 0.7;
-}
-
-.slider__link {
-  margin-top: 10px;
-}
-
-.slider__link-text {
-  margin-left: 20px;
+.works-slider__link {
+  display: block;
   font-size: 18px;
   font-weight: bold;
   color: $links-color;
-}
-
-.slider__link-ico {
-  width: 15px;
-  height: 15px;
-  fill: $links-color;
+  margin-top: 35px;
+  &:before {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+    background: svg-load("link.svg", fill=$links-color, width=100%, height=100%);
+  }  
 }
