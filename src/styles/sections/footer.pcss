@@ -6,6 +6,9 @@ footer {
 
 .footer__container {
   display: flex;
+  @include phones {
+    flex-direction: column;
+  }
 }
 
 .footer__personal {
@@ -13,6 +16,10 @@ footer {
   width: 38%;
   @include desktop {
     flex-direction: column;
+  }
+  @include phones {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -41,12 +48,21 @@ footer {
 .footer__author-desc {
   margin-top: 54px;
   opacity: .15;
+  @include phones {
+    margin-top: 20px;
+  }
 }
 
 .footer__content {
   margin-left: 145px;
   display: flex;
   flex-direction: column;
+  @include tablets {
+    margin-left: 120px;
+  }
+  @include phones {
+    margin-left: 0;
+  }
 }
 
 .footer__row {
@@ -54,9 +70,19 @@ footer {
   margin-top: 70px;
   display: flex;
   justify-content: space-between;
+  @include desktop {
+    width: 100%;
+  }
+  @include tablets {
+    flex-direction: column;
+  }
 }
 .footer__about-site {
   opacity: .3;
+  @include phones {
+    margin-left: 10%;
+    width: 80%;
+  }
 }
 
 .footer__col {
@@ -66,11 +92,35 @@ footer {
   &:first-child {
     width: 40%;
   }
+  @include desktop {
+    width: 50%;
+    &:first-child {
+      width: 46%;
+    }
+  }
+  @include tablets {
+    width: 100%;
+    &:first-child {
+      width: 100%;
+    }
+     &:last-child {
+      margin-top: 79px;
+    }
+  }
 }
 
 .footer__socials {
   &-wrap {
-    margin-top: 30px;  
+    margin-top: 30px;
+    @include phones {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  @include tablets {
+    &-wrap {
+      margin-top: 20px;  
+    }
   }
 }
 
@@ -91,5 +141,18 @@ footer {
 
 .footer__navigation__wrap {
   color: $color-white;
-  width: 89%;
+  width: 100%;
+  @include tablets {
+    width: 100%;
+  }
+  @include phones {
+    display: flex;    
+    margin: 0 auto;
+    width: 70%;
+  }
+}
+
+.footer__col-quote {
+  margin-left: 10%;
+  width: 80%;
 }

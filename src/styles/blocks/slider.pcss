@@ -1,5 +1,8 @@
 .slider-wrap {
   display: flex;
+  @include tablets {
+    flex-direction: column;
+  }
 }
 
 .works-slider__display {
@@ -19,10 +22,12 @@
     font-weight: 800;
     margin-left: -60px;
     color: $bg-number;
-  }  
-  @include phones {
+  }
+  @include tablets {
+    width: 88%;
+  }
+  @include phones {    
     width: 100%;
-    margin-bottom: 60px;
     &:before {
       display: none;
     }
@@ -35,6 +40,9 @@
   right: 0;
   width: 100%;
   height: 100%;
+  @include phones {
+    height: 50%;
+  }
 }
 
 .works-slider__img {
@@ -52,6 +60,9 @@
   right: 0;
   bottom: 11%;
   z-index: 12;
+  @include phones {
+    display: none;
+  }
 }
 
 .works-slider__previews-item {
@@ -103,6 +114,11 @@
   right: -50px;
   bottom: 11%;
   z-index: 13;
+  @include phones {
+    right: 0;
+    bottom: 0;
+    top: 30%;
+  }
 }
 
 .works-slider__btn {
@@ -142,8 +158,19 @@
   position: relative;
   padding-left: 163px;
   z-index: 0;
+  @include tablets {
+    padding-left: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%;
+    margin-top: 60px;
+  }
   @include phones {
+    width: 97%%;
     padding: 0 5%;
+    margin-top: -200px;
     text-align: left;
     align-items: flex-start;
   }

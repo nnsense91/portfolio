@@ -7,21 +7,45 @@
   position: relative;
 
   @include desktop {
-    
+    background-size: inherit;
+    background-position: 0 -5%;
+    padding-bottom: 130px;
+  }
+  @include phones {
+    background-size: inherit;
+    background-position: 0 20%;
+    background-size: cover;
     padding-bottom: 130px;
   }
 }
 
 .welcome__container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column;  
   align-items: center;
+  justify-content: space-between;
+  @include tablets {
+    justify-content: flex-start;
+  }
 }
 
 .welcome__content {
   width: 40%;  
   display: flex;
+  margin-bottom: 10%;
+  @include desktop {
+    width: 50%;
+  }
+  @include tablets {
+    margin-top: 15%;
+    flex-direction: column;
+    text-align: center;
+  }
+  @include phones {
+    margin-top: 25%;
+    width: 90%;
+    align-items: center;
+  }
 }
 
 .welcome__title {
@@ -29,21 +53,47 @@
   font-size: 72px;
   font-weight: 800;
   line-height: 0.83;
+  @include tablets {
+    margin-left: 0;
+  }
+  @include phones {
+    margin-top: 20px;
+    font-size: 40px;
+  }
 }
 
 .welcome__title-desc {
   font-size: 18px;
   line-height: 1.67;
   text-align: right;
+  @include tablets {
+    width: 60%;
+  }
+   @include phones {
+     width: 50%;
+     text-align: center;
+   }
 }
 
 .welcome__pic-train {
   position: absolute;
-  width: 100%;
-  bottom: -165px;
+  /* width: 100%; */
+  bottom: -5%;
   z-index: 2;
 
   @include desktop {
-    bottom: 30px;
+    bottom: 12%;
   }
+  @include tablets {    
+    bottom: 25%;
+    height: 300px;
+  }
+  @include phones {
+    height: 250px;
+    /* bottom: 30%; */
+  }
+}
+
+.scroll-wrap {
+  z-index: 20;
 }

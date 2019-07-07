@@ -5,6 +5,9 @@ html {
   @include tablets {
     font-size: 14px;
   }
+  @include phones {
+    font-size: 12px;
+  }
 }
 body,
 html {
@@ -38,7 +41,7 @@ body {
   }
   
   @include phones {
-    width: 85%;
+    width: 95%;
   }
 }
 
@@ -52,7 +55,8 @@ body {
 
 .fullscreen-section {
   height: 100vh;
-  min-height: 650px;
+  max-height: 950px;
+  /* min-height: 650px; */
 }
 
 .section {

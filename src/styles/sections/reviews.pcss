@@ -24,13 +24,26 @@
   right: 0;
   top: -200px;
   z-index: 2;
+  @include tablets {
+    transform: scale(0.7);
+    right: -30%;
+  }
+  @include phones {
+    display: none;
+  }
 }
 .reviews__littleleaf1 {
   position: absolute;
   right: 400px;
   bottom: -50px;
   z-index: 2;
-  
+  @include tablets {
+    transform: scale(0.7);
+    right: 150px;
+  }
+  @include phones {
+    display: none;
+  }
 }
 
 .reviews__container {
@@ -40,6 +53,13 @@
 
 .reviews__control {
   margin-left: 100px;
+  @include tablets {
+    margin-left: 4%;
+  }
+  @include phones {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }
 .reviews__button {
   width: 50px;
@@ -69,7 +89,18 @@
 
 .reviews__title-wrap {
   display: flex;
-  padding-top: 140px;
+  padding-top: 140px;  
+  @include phones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.reviews__title {
+  @include tablets {
+    font-size: 30px;
+  }
 }
 
 .reviews__wrap {
@@ -79,6 +110,9 @@
 .reviews__list {
   display: flex;
   min-height: 210px;
+  @include tablets {
+    justify-content: space-around;
+  }
 }
 
 .reviews__item {  
@@ -96,11 +130,24 @@
     height: 63px;
     float: left;
     opacity: .1;
-  }
-  
+    @include tablets {
+      margin-right: 10px;
+      width: 30px;
+      height: 25px;
+    }
+  }  
   @include desktop {
     width: 40%;
   }
+    @include tablets {
+      width: 50%;
+    }
+    @include phones {
+      &:last-child {
+        display: none;
+      }
+      width: 100%;
+    }
 }
 
 .reviews__quote-ico {

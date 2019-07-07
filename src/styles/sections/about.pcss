@@ -11,15 +11,26 @@
   justify-content: center;
   padding-top: 165px;
   padding-bottom: 265px;
+  @include phones {
+    width: 95%;
+    padding-top: 20px;
+  }
 }
 
 .about__grass {
   width: 100%;
   position: absolute;
-  top: 0;
+  top: -15%;
   z-index: 2;
   @include desktop {
-    top: -150px
+    top: -25%;
+  }
+  @include tablets {
+    top: -37%;
+    height: 10%px;
+  }
+  @include phones {
+    top: -48%;
   }
 }
 
@@ -37,9 +48,24 @@
   background: linear-gradient(to top, #1b1f22 60%, transparent);
   bottom: 30%;
   z-index: 3;
+  @include desktop {
+    bottom: 42%;
+  }
+  @include tablets {
+    height: 40%;
+    bottom: 95%;
+  }
+  @include phones {
+    background: linear-gradient(to top, #1b1f22 88%, transparent);
+    height: 50%;
+    bottom: 80%;
+  }
 }
 
 .about__content-wrap {
   width: 67%;
   z-index: 5;
+  @include tablets {
+    width: 100%;
+  }
 }

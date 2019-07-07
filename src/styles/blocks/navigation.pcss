@@ -5,16 +5,13 @@
   align-items: center;
   @include desktop {
     width: 63%;
-  }
-  @include tablets {
-    display: none;
-  }
+  }  
 }
 .navigation__list {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-left: ;
+  margin-left: 0;
 }
 
 .navigation__item {
@@ -24,6 +21,34 @@
   }
 }
 
+.navigation--header {
+  @include tablets {
+    display: none;
+  }
+}
+
 .navigation--footer {
   width: 80%;
+  @include desktop {
+    width: 90%;
+  }
+
+  @include tablets {
+    width: 100%;
+    &>.navigation__list {
+      width: 100%;
+      flex-wrap: wrap;    
+      justify-content: flex-start;
+      margin-left: -63px;
+    }
+    @include phones {
+      &>.navigation__list {
+        margin-left: 0;
+      }
+    }
+    & .navigation__item {
+      margin-left: 63px;
+      line-height: 3.14;
+    }
+  }
 }

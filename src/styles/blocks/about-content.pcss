@@ -1,16 +1,30 @@
 .about__content {
   display: flex;
   justify-content: space-between;
+  @include phones {
+    flex-direction: column;
+    align-items: center;
+    justify-content: inherit;
+  }
 }
 
 .about__id-card {
   width: 35%;
   display: flex;
   flex-direction: column;
+  @include phones {
+    width: 95%;
+  }
 }
 
 .about__description {  
   width: 57%;
+  @include phones {
+    margin-top: 20px;
+    align-self: flex-start;
+    margin-left: 13%;
+    width: 80%;
+  }
 }
 
 .about__avatar-block {
@@ -19,6 +33,8 @@
   width: 200px;
   height: 200px;
   align-self: center;
+  @include phones {
+  }
 }
 
 .about__avatar {  
@@ -27,12 +43,18 @@
 
 .about__info {
   margin-top: 55px;
+  @include phones {
+    width: 80%;
+    align-self: center;
+    text-align: center;
+  }
 }
 
 .about__row {
   display: flex;
   &:not(first-child) {
     margin-top: 20px;
+    text-align: right;
   }
 }
 
@@ -41,12 +63,18 @@
   opacity: 0.15;
   font-weight: 600;
   color: $color-white;
+  @include phones {
+    text-align: left;
+  }
 }
 
 .about__row-data {
   font-size: 16px;
   font-weight: 600;
   color: $color-white;
+  @include phones {
+   width: 50%; 
+  }
 }
 
 .about__description {
