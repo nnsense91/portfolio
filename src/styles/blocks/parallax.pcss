@@ -10,19 +10,58 @@
     transform: scale(2);
     width: 100%;
     height: 100%;
+    @include parallax-add2 {
+        transform: scale(3);
+    }
+    @include parallax-add4 {
+        transform: scale(4);
+    }
 }
 
 .parallax__mountains {
     top: 400px;
+    @include parallax-add1 {
+        top: 350px;
+    }
+    @include parallax-add4 {
+        top: 300px;
+    }
 }
 
 .parallax__train {
     top: 480px;
+    @include parallax-add1 {
+        top: 420px;
+    }
+    @include desktop {
+        top: 360px;    
+    }
+    @include parallax-add4 {
+        top: 340px;
+    }
 }
 
 .parallax__grass {
     transform: scale(1.5);
     top: 1000px;
+    @include parallax-add1 {
+        top: 830px;
+    }
+    @include desktop {
+        top: 700px;
+    }
+    @include parallax-add2 {
+        top: 630px;
+    }
+    @include parallax-add3 {
+        top: 580px;
+    }
+    @include parallax-add4 {
+        top: 520px;
+    }
+    @include parallax-add5 {
+        top: 485px;
+    }
 }
 
 .parallax__img {
