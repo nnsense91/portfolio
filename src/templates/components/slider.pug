@@ -1,0 +1,43 @@
+script(type="text/x-template")#slider-container
+    .slider-wrap
+        pre {{works}}
+        display
+        info
+
+
+
+script(type="text/x-template")#slider-display
+    .works-slider__display
+        .works-slider__content.works-slider__pic
+            +image("content/slide1.jpg", "works-slider__img", "Selected work")
+        btns
+        thumbs
+        
+script(type="text/x-template")#slider-thumbs
+    ul.works-slider__previews
+        - var slides = ["slide1", "slide2", "slide3", "slide4"]
+        each slide in slides
+            li.works-slider__previews-item
+                a(href="#").works-slider__previews-link
+                    +image("content/" + `${slide}.jpg`, "works-slider__previews-img", "Preview slide")
+                    
+script(type="text/x-template")#slider-btns
+    .works-slider__buttons
+        a(href="#").works-slider__btn.works-slider__btn_next.active
+            +icon("arrow-down", "works__arrow-icon")
+        a(href="#").works-slider__btn.works-slider__btn_prev
+            +icon("arrow-down", "works__arrow-icon")
+
+script(type="text/x-template")#slider-info
+    .works-slider__desc
+        tags
+        .works-slider__title Сайт школы образования
+        .works-slider__text.main-text
+            p Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+    a(href="#").works-slider__link Посмотреть сайт
+
+script(type="text/x-template")#slider-tags
+    ul.works-slider__tags
+        - var tags = ["HTML", "CSS", "Javascript"]
+        each tag in tags
+            li.works-slider__tag-item= tag
