@@ -12,7 +12,7 @@
   height: 550px;
 
   &:before {    
-    content: "2";
+    content: attr(data-slide);
     position: absolute;
     top: 50%;
     transform: translateY(-60%);
@@ -78,7 +78,10 @@
     opacity: 0;
   }
 
-  &.active,
+  &.active {
+    margin-right: 3px;
+    outline: 3px solid #f29400;  
+  }
   &:hover {
     margin-right: 3px;
     outline: 3px solid #f29400;  
@@ -127,7 +130,8 @@
   background-color: $dblue-color;
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
+  outline: none;
 
   &:hover {
     background-color: $color-orange;
@@ -148,7 +152,7 @@
   transform: rotate(180deg);
 }
 
-.active > .works__arrow-icon {
+.active-btn > .works__arrow-icon {
   opacity: 1;
 }
 
