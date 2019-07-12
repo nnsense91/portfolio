@@ -119,10 +119,9 @@
 
 .reviews__item {
   list-style-type: none;
-  width: 33%;
-  &:not(:first-child) {
-    margin-left: 65px;
-  }
+  width: 40%;
+    margin-left: 10%;
+  
   &:before {
     content:"";
     display: block;  
@@ -143,7 +142,8 @@
     width: 40%;
   }
     @include tablets {
-      width: 50%;
+      width: 45%;
+      margin-left: 5%;
     }
     @include phones {
       &:last-child {
@@ -168,6 +168,7 @@
 }
 
 .reviews__text {
+  width: 80%;
 }
 
 .reviews__author {
