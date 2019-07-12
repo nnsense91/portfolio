@@ -9,9 +9,11 @@
   position: absolute;
   right: 230px;
   top: 180px;
+  
   @include tablets {
     right: -50px;
   }
+
   @include phones {
     display: none;
   }
@@ -20,10 +22,12 @@
   position: absolute;
   right: 210px;
   bottom: 120px;
+
   @include tablets {
-    transform: scale(.7);
+    transform: scale(0.7);
     right: -100px;
   }
+
   @include phones {
     display: none;
   }
@@ -42,6 +46,7 @@
   @include desktop {
     width: 70%;
   }
+
   @include tablets {
     width: 100%;
     position: relative;
@@ -68,6 +73,7 @@
   &:not(:first-child) {
     margin-top: 25px;
   }
+
   @include phones {
     flex-direction: column;
 
@@ -84,12 +90,10 @@
   width: 47%;
   display: flex;
   flex-direction: column;
+
   @include phones {
     width: 100%;
   }
-}
-
-.form__line {
 }
 
 .input__wrap--message {
@@ -142,16 +146,18 @@
   &:focus + svg {
     fill: $color-orange;
   }
+
   @include tablets {
     width: 80%;
   }
+
   @include phones {
     width: 100%;
     font-size: 16px;
   }
 }
 
-.form__submit {  
+.form__submit {
   margin-top: 35px;
   width: 347px;
   height: 80px;
@@ -160,8 +166,6 @@
   text-transform: uppercase;
   color: $color-white;
   background: linear-gradient(to right, $color-orange, $color-orangeLight);
-  @include tablets {    
-  }
 }
 
 .form__data--active {
@@ -181,6 +185,7 @@ input:-webkit-autofill {
     display: flex;
     justify-content: center;
   }
+
   @include phones {
     align-items: center;
   }

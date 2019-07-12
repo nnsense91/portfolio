@@ -24,10 +24,12 @@
   right: 0;
   top: -200px;
   z-index: 2;
+  
   @include tablets {
     transform: scale(0.7);
     right: -30%;
   }
+
   @include phones {
     display: none;
   }
@@ -37,10 +39,12 @@
   right: 400px;
   bottom: -50px;
   z-index: 2;
+
   @include tablets {
     transform: scale(0.7);
     right: 150px;
   }
+
   @include phones {
     display: none;
   }
@@ -53,9 +57,11 @@
 
 .reviews__control {
   margin-left: 100px;
+
   @include tablets {
     margin-left: 4%;
   }
+
   @include phones {
     margin-left: 0;
     margin-top: 20px;
@@ -91,7 +97,8 @@
 
 .reviews__title-wrap {
   display: flex;
-  padding-top: 140px;  
+  padding-top: 140px;
+
   @include phones {
     display: flex;
     flex-direction: column;
@@ -112,6 +119,7 @@
 .reviews__list {
   display: flex;
   min-height: 210px;
+
   @include tablets {
     justify-content: space-around;
   }
@@ -120,37 +128,41 @@
 .reviews__item {
   list-style-type: none;
   width: 40%;
-    margin-left: 10%;
+  margin-left: 10%;
   
-  &:before {
-    content:"";
-    display: block;  
+  &::before {
+    content: "";
+    display: block;
     background: svg-load("quote.svg", fill=$color-white, width=100%, height=100%) center center no-repeat;
     object-fit: contain;
     margin-right: 30px;
     width: 75px;
     height: 63px;
     float: left;
-    opacity: .1;
+    opacity: 0.1;
+
     @include tablets {
       margin-right: 10px;
       width: 30px;
       height: 25px;
     }
-  }  
+  }
+
   @include desktop {
     width: 40%;
   }
-    @include tablets {
-      width: 45%;
-      margin-left: 5%;
+
+  @include tablets {
+    width: 45%;
+    margin-left: 5%;
+  }
+
+  @include phones {
+    &:last-child {
+    display: none;
     }
-    @include phones {
-      &:last-child {
-        display: none;
-      }
-      width: 100%;
-    }
+  width: 100%;
+  }
 }
 
 .reviews__quote-ico {

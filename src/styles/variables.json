@@ -11,14 +11,7 @@
   "bg-footer": "#1b1f22",
   "slider-descReview": "#2b3948",
   "bp-desktop-hd": "1800px",
-  "paralax-add1": "1550px",
-  "paralax-add1_1": "1550px",
   "bp-desktop": "1200px",
-  "paralax-add2": "950px",
-  "paralax-add3": "700px",
-  "paralax-add4": "570px",
   "bp-tablets": "768px",
-  "bp-phones": "480px",
-  "paralax-add5": "420px",
-  "little-phones": "320px"
+  "bp-phones": "480px"
 }

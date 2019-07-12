@@ -1,69 +1,86 @@
 .parallax__layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;    
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .parallax__sky {
-    object-fit: cover;
-    transform: scale(2);
-    width: 100%;
-    height: 100%;
-    @include parallax-add2 {
-        transform: scale(3);
-    }
-    @include parallax-add4 {
-        transform: scale(4);
-    }
+  object-fit: cover;
+  transform: scale(2);
+  width: 100%;
+  height: 100%;
+  @media screen and (max-width: 950px) {
+      transform: scale(3);
+  }
+  
+  @media screen and (max-width: 570px) {
+      transform: scale(4); 
+  }
 }
-
 .parallax__mountains {
-    top: 400px;
-    @include parallax-add1 {
-        top: 350px;
-    }
-    @include parallax-add4 {
-        top: 300px;
-    }
+  top: 400px;
+
+  @media screen and (max-width: 1550px) {
+      top: 350px;
+  }
+
+  @media screen and (max-width: 700px) {
+      top: 300px;
+      height: 600px;
+  }
 }
 
 .parallax__train {
-    top: 480px;
-    @include parallax-add1 {
-        top: 420px;
-    }
-    @include desktop {
-        top: 360px;    
-    }
-    @include parallax-add4 {
-        top: 340px;
-    }
+  top: 480px;
+
+  @media screen and (max-width: 1550px) {
+      top: 420px;
+  }
+
+  @include desktop {
+      top: 360px;    
+  }
+
+  @media screen and (max-width: 700px) {
+      height: 400px;
+  }
 }
 
 .parallax__grass {
-    transform: scale(1.5);
-    top: 1000px;
-    @include parallax-add1 {
-        top: 830px;
-    }
-    @include desktop {
-        top: 700px;
-    }
-    @include parallax-add2 {
-        top: 630px;
-    }
-    @include parallax-add3 {
-        top: 580px;
-    }
-    @include parallax-add4 {
-        top: 520px;
-    }
-    @include parallax-add5 {
-        top: 485px;
-    }
+  top: 95%;
+
+  @media screen and (max-width: 1800px) {
+    top: 90%;
+  }
+
+  @media screen and (max-width: 1650px) {
+    top: 88%;
+  }
+
+  @media screen and (max-width: 1550px) {
+    height: 120%;
+    top: 70%;
+  }
+
+  @include desktop {
+    top: 60%;
+  }
+
+  @media screen and (max-width: 950px) {
+    top: 53%;
+  }
+
+  @media screen and (max-width: 700px) {
+    height: 500px;
+    top: 70%;
+  }
 }
 
+
+
 .parallax__img {
-    position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }

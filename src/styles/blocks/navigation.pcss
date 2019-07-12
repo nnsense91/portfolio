@@ -3,10 +3,12 @@
   color: $color-white;
   display: flex;
   align-items: center;
+  
   @include desktop {
     width: 63%;
-  }  
+  }
 }
+
 .navigation__list {
   width: 100%;
   display: flex;
@@ -29,6 +31,7 @@
 
 .navigation--footer {
   width: 80%;
+
   @include desktop {
     width: 90%;
   }
@@ -37,10 +40,11 @@
     width: 100%;
     &>.navigation__list {
       width: 100%;
-      flex-wrap: wrap;    
+      flex-wrap: wrap;
       justify-content: flex-start;
       margin-left: -63px;
     }
+
     @include phones {
       &>.navigation__list {
         margin-left: 0;
