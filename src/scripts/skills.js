@@ -9,25 +9,38 @@ const skill = {
     methods: {
         drawCircle() {
             const circle = this.$refs["circle"];
+            const windowHeight = window.innerHeight;
             let findBlcTop = this.$root.findCircle();
             const dashArray = parseInt(
                 getComputedStyle(circle).getPropertyValue("stroke-dasharray")
             );
             const percent = (dashArray / 100) * (100 - this.skillPercent);
+            let exactTop = getTop(findBlcTop)
 
-            window.addEventListener("scroll", function() {
-                const posTop = findBlcTop.findTop.getBoundingClientRect().top;
-                const exactTop = posTop.toFixed();
+            if (
+                windowHeight >= exactTop
+            ) {
+                circle.style.strokeDashoffset = percent;
+            }
 
-                if (exactTop > 300 && exactTop < 350) {                    
+            window.addEventListener("scroll", function () {
+                exactTop = getTop(findBlcTop);
+                if (
+                    exactTop > windowHeight / 2 &&
+                    exactTop < (windowHeight / 2 + 100)
+                ) {
                     circle.style.strokeDashoffset = percent;
                 }
             });
+            function getTop(findBlcTop) {
+                const posTop = findBlcTop.findTop.getBoundingClientRect().top;
+                return posTop.toFixed();
+            }
         }
     },
     mounted() {
         this.drawCircle();
-        
+
     }
 }
 
@@ -58,13 +71,10 @@ new Vue({
     },
     methods: {
         findCircle() {
-            let circleBlock = this.$refs[this.skills];
+            let circleBlock = this.$refs["skills-block"];
             return {
                 findTop: circleBlock
             };
         }
-    },
-    mounted() {
-        console.log(this.skills);        
     }
 })
