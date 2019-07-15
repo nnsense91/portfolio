@@ -72,6 +72,8 @@ new Vue({
     methods: {
         findCircle() {
             let circleBlock = this.$refs["skills-block"];
+            console.log(circleBlock);
+
             return {
                 findTop: circleBlock
             };
