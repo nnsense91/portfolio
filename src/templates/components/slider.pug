@@ -15,7 +15,7 @@ script(type="text/x-template")#slider-container
 script(type="text/x-template")#slider-display
     .works-slider__display(:data-slide="currentIndex + 1")
         .works-slider__content.works-slider__pic
-            img(:src="currentWork.photo", class="works-slider__img", alt="Selected work")
+            img(:src="currentWork.photo", class="works-slider__img", alt="Выбранная работа")
         btns(
             @slide="direction => $emit('slide', direction)"
         )
