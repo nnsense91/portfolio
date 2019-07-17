@@ -17,6 +17,41 @@
 
 .reviews {
   position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url("~images/content/leafBig.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 0;
+    top: -20%;
+    height: 230px;
+    width: 200px;
+    z-index: 2;
+    
+    @include phones {
+      display: none;
+    }
+  }
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    background: url("~images/content/leaf1.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: 20%;
+    top: 85%;
+    height: 130px;
+    width: 100px;
+    z-index: 2;
+    
+    @include phones {
+      display: none;
+    }
+  }
 }
 
 .reviews__leaf-big {
@@ -52,7 +87,7 @@
 
 .reviews__container {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .reviews__control {

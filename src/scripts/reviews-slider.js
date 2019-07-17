@@ -21,7 +21,7 @@ new Vue({
             initialIndex: 3,
             prevNextButtons: false,
             pageDots: false,
-            wrapAround: true,
+            wrapAround: false,
             groupCells: true
             // any options from Flickity can be used
         }

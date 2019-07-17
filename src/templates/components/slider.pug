@@ -30,7 +30,7 @@ script(type="text/x-template")#slider-thumbs
                 v-for="work in works"
                 :class="{active: work.id === currentWork.id}"
             )
-                a(href="#").works-slider__previews-link                    
+                button(type="button").works-slider__previews-link                    
                     img(:src="work.photo", class="works-slider__previews-img", alt="Preview slide")
                     
 script(type="text/x-template")#slider-btns
@@ -57,4 +57,4 @@ script(type="text/x-template")#slider-info
 script(type="text/x-template")#slider-tags
     ul.works-slider__tags        
         li.works-slider__tag-item(v-for="tag in tags")
-            .tag {{tag}}
+            .works_slider-tag {{tag}}
