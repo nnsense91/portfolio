@@ -52,18 +52,18 @@
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                        - var skillsArray = [{text:"Git", value:"100"}, {text:"Terminal", value:"90"}, {text:"Gulp", value:"80"}, {text:"Webpack", value:"85"}]
-                        each item in skillsArray
-                          li.skills-form__skills-item
-                            table.skills-form__skills-table
-                              tr.skills-form__skills-row
-                                td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
-                                td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
-                                td.skills-form__skills-cell.skills-form__skills-cell--percent %
-                                td.skills-form__skills-cell.skills-form__skills-cell--control
-                                  .skills-form__skills-control
-                                    button(type="button").btn-edit
-                                    button(type="button").btn-delete
+                        //- - var skillsArray = [{text:"Git", value:"100"}, {text:"Terminal", value:"90"}, {text:"Gulp", value:"80"}, {text:"Webpack", value:"85"}]
+                        //- each item in skillsArray
+                        //-   li.skills-form__skills-item
+                        //-     table.skills-form__skills-table
+                        //-       tr.skills-form__skills-row
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--percent %
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--control
+                        //-           .skills-form__skills-control
+                        //-             button(type="button").btn-edit
+                        //-             button(type="button").btn-delete
                     label.skills-form__new-skillblock
                       input(placeholder="Новый навык").skills-form__new-skillname
                       input(value="100").skills-form__new-skillpercent
@@ -79,18 +79,18 @@
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                        - var skillsArray = [{text:"HTML5", value:"100"}, {text:"CSS", value:"90"}, {text:"JavaScript", value:"80"}, {text:"Jquery и Vue.js", value:"85"}]
-                        each item in skillsArray
-                          li.skills-form__skills-item
-                            table.skills-form__skills-table
-                              tr.skills-form__skills-row
-                                td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
-                                td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
-                                td.skills-form__skills-cell.skills-form__skills-cell--percent %
-                                td.skills-form__skills-cell.skills-form__skills-cell--control
-                                  .skills-form__skills-control
-                                    button(type="button").btn-edit
-                                    button(type="button").btn-delete
+                        //- - var skillsArray = [{text:"HTML5", value:"100"}, {text:"CSS", value:"90"}, {text:"JavaScript", value:"80"}, {text:"Jquery и Vue.js", value:"85"}]
+                        //- each item in skillsArray
+                        //-   li.skills-form__skills-item
+                        //-     table.skills-form__skills-table
+                        //-       tr.skills-form__skills-row
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--percent %
+                        //-         td.skills-form__skills-cell.skills-form__skills-cell--control
+                        //-           .skills-form__skills-control
+                        //-             button(type="button").btn-edit
+                        //-             button(type="button").btn-delete
                     label.skills-form__new-skillblock
                       input(placeholder="Новый навык").skills-form__new-skillname
                       input(value="100").skills-form__new-skillpercent
@@ -124,6 +124,24 @@
                 .works-form__controls
                   button(type="button").btn-main.btn-main--cancel Отмена
                   button(type="button").btn-main СОХРАНИТЬ
+        .works__list-wrap
+          ul.works__list
+            li.works__item.works__item--new
+              button(type="button").btn-addnew.btn-addnew--works +
+              .works__addnew-desc Добавить работу
+              - var worksData = [{title: "Сайт школы образования"}, {desc: "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!"}, {link: "http://loftschool.ru"}]
+              each item in worksData
+                li.works__item
+                  .works__pic-block
+                    //- img array
+                  .works__content
+                    h3.works__title
+                    p.works__desc
+                    a(href="").works__link
+                    .works__controls
+                      button(type="button").btn-edit.btn-edit--works Править
+                      button(type="button").btn-discard.btn-discard--works Удалить
+
 
 
                         
@@ -235,14 +253,14 @@ button {
   width: 15px;
   height: 12px;
   background: svg-load("cross.svg", fill=#bf2929, width=100%, height=100%) 0
-    100% / contain no-repeat;
+  100% / contain no-repeat;
 }
 
 .btn-edit {
   width: 14px;
   height: 14px;
   background: svg-load("pencil.svg", fill=#a0a5b1, width=100%, height=100%) 0
-    100% / contain no-repeat;
+  100% / contain no-repeat;
 }
 
 .btn-delete {
@@ -486,7 +504,10 @@ button {
 
 //work
 .works {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("../images/content/mountain.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .works__form-wrap {
@@ -612,4 +633,85 @@ button {
   background: transparent;
   color: #383bcf;
 }
+
+
+.works__list-wrap {
+  width: 100%;
+  padding: 30px 0;  
+}
+
+.works__list {
+  width: 100%;
+}
+
+.works__item {
+  width: 32%;
+  height: 556px;
+}
+
+.works__item--new {
+  display: flex;
+}
+
+.works__item--new {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #006aed, #3f35cb);
+}
+
+.btn-addnew--works {
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border: 1px solid #fff;
+  font-family: Open Sans;
+  font-size: 72px;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.works__addnew-desc {
+  margin-top: 30px;
+  text-align: center;
+  width: 30%;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  color: #ffffff;
+}
+
+.works__controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edit--works {
+  background: svg-load("pencil.svg", fill=#383bcf, width=100%, height=100%) 0
+  100% / contain no-repeat;  
+  width: 100px;
+  height: 30px;
+  background-position: 100% 50%;
+  background-size: 14px 14px;
+  text-align: left;
+  color: rgba(65, 76, 99, 0.5);
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-discard--works {
+  width: 100px;
+  background-position: 100% 50%;
+  background-size: 15px 12px;
+  height: 30px;
+  text-align: left;
+  color: rgba(65, 76, 99, 0.5);
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 </style>
