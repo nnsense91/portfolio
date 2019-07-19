@@ -15,7 +15,8 @@
           ul.nav__list
             - var pages= ["Обо мне", "Работы", "Отзывы"]
             each item in pages
-              li.nav__item.nav__item--active= item
+              li.nav__item.nav__item--active
+                a(href="#").nav__link= item
     section.about
       .container.about__container
         .about__title-row
@@ -52,18 +53,18 @@
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                        //- - var skillsArray = [{text:"Git", value:"100"}, {text:"Terminal", value:"90"}, {text:"Gulp", value:"80"}, {text:"Webpack", value:"85"}]
-                        //- each item in skillsArray
-                        //-   li.skills-form__skills-item
-                        //-     table.skills-form__skills-table
-                        //-       tr.skills-form__skills-row
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--percent %
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--control
-                        //-           .skills-form__skills-control
-                        //-             button(type="button").btn-edit
-                        //-             button(type="button").btn-delete
+                        - var skillsArray = [{text:"Git", value:"100"}, {text:"Terminal", value:"90"}, {text:"Gulp", value:"80"}, {text:"Webpack", value:"85"}]
+                        each item in skillsArray
+                          li.skills-form__skills-item
+                            table.skills-form__skills-table
+                              tr.skills-form__skills-row
+                                td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
+                                td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
+                                td.skills-form__skills-cell.skills-form__skills-cell--percent %
+                                td.skills-form__skills-cell.skills-form__skills-cell--control
+                                  .skills-form__skills-control
+                                    button(type="button").btn-edit
+                                    button(type="button").btn-delete
                     label.skills-form__new-skillblock
                       input(placeholder="Новый навык").skills-form__new-skillname
                       input(value="100").skills-form__new-skillpercent
@@ -79,18 +80,18 @@
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                        //- - var skillsArray = [{text:"HTML5", value:"100"}, {text:"CSS", value:"90"}, {text:"JavaScript", value:"80"}, {text:"Jquery и Vue.js", value:"85"}]
-                        //- each item in skillsArray
-                        //-   li.skills-form__skills-item
-                        //-     table.skills-form__skills-table
-                        //-       tr.skills-form__skills-row
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--percent %
-                        //-         td.skills-form__skills-cell.skills-form__skills-cell--control
-                        //-           .skills-form__skills-control
-                        //-             button(type="button").btn-edit
-                        //-             button(type="button").btn-delete
+                        - var skillsArray = [{text:"HTML5", value:"100"}, {text:"CSS", value:"90"}, {text:"JavaScript", value:"80"}, {text:"Jquery и Vue.js", value:"85"}]
+                        each item in skillsArray
+                          li.skills-form__skills-item
+                            table.skills-form__skills-table
+                              tr.skills-form__skills-row
+                                td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
+                                td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
+                                td.skills-form__skills-cell.skills-form__skills-cell--percent %
+                                td.skills-form__skills-cell.skills-form__skills-cell--control
+                                  .skills-form__skills-control
+                                    button(type="button").btn-edit
+                                    button(type="button").btn-delete
                     label.skills-form__new-skillblock
                       input(placeholder="Новый навык").skills-form__new-skillname
                       input(value="100").skills-form__new-skillpercent
@@ -106,7 +107,8 @@
               .works-form__download-area
                 .works-form__download-content
                   p.works-form__download-desc Перетащите или загрузите для загрузки изображения
-                  button(type="button").btn-main ЗАГРУЗИТЬ
+                  button(type="button").btn-main.works__download-btn ЗАГРУЗИТЬ
+              button(type="button").btn-main--cancel.download-tabletbtn Изменить превью
               .works-form__main-content
                 label.works-form__label Название
                   input(value="Дизайн сайта для авто салона Porsche").works-form__new-title
@@ -129,19 +131,68 @@
             li.works__item.works__item--new
               button(type="button").btn-addnew.btn-addnew--works +
               .works__addnew-desc Добавить работу
-              - var worksData = [{title: "Сайт школы образования"}, {desc: "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!"}, {link: "http://loftschool.ru"}]
-              each item in worksData
+              - var worksData = {title: "Сайт школы образования", desc: "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!", link: "http://loftschool.ru"}
+              - var slideArr = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg", "slide5.jpg"]
+              - var i = 0
+              each item in slideArr                             
                 li.works__item
                   .works__pic-block
-                    //- img array
+                    img(src="../images/content/" + slideArr[i], class="works__pic", alt="")
+                    - i++
                   .works__content
-                    h3.works__title
-                    p.works__desc
-                    a(href="").works__link
+                    h3.works__title= worksData.title
+                    p.works__desc= worksData.desc
+                    a(href="#").works__link= worksData.link
                     .works__controls
                       button(type="button").btn-edit.btn-edit--works Править
                       button(type="button").btn-discard.btn-discard--works Удалить
-
+    section.reviews
+      .container
+        h2.title.reviews__title Блок "Отзывы"
+        .reviews__form-wrap
+          form.form.reviews-form
+            h3.reviews-form__title Новый отзыв
+            .form-line
+            .reviews-form__content
+              .reviews-form__avatar-wrap
+                .reviews-form__avatar-block                
+                button(type="button").form__addphoto-btn Добавить фото
+              .reviews-form__main-content
+                .reviews-form__row
+                  label.reviews-form__block-name Имя автора
+                    input(value="Ковальчук Дмитрий").reviews-form__input-name
+                  label.reviews-form__block-profession Титул автора
+                    input(value="Основатель LoftSchool").reviews-form__input-profession
+                label.reviews-form__block-text Отзыв
+                  textarea.reviews-form__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                .reviews-form__controls
+                  button(type="button").btn-main.btn-main--cancel Отмена
+                  button(type="button").btn-main СОХРАНИТЬ
+        .reviews__main-content
+          .reviews__list-wrap
+            ul.reviews__list
+              li.reviews__item.reviews__item--new
+                button(type="button").btn-addnew.btn-addnew--reviews +
+                .reviews__addnew-desc Добавить отзыв
+                - var nameArr = ["Владимир Сабанцев", "Ковальчук Дмитрий", "Петров Сергей", "Степан Реактивный", "Федор Сумкин"]
+                - var avatarArr = ["kovalchuk.png", "sabancev.png", "kovalchuk.png", "sabancev.png", "sabancev.png"]
+                - var professionArr = ["Преподаватель", "Основатель LoftSchool", "Водитель автобуса", "Работник Почты России", "Шахтер"]
+                - var i = 0
+                each item in slideArr                             
+                  li.reviews__item
+                    .reviews__author
+                      .reviews__avatar
+                        img(src="../images/content/" + avatarArr[i], class="reviews__pic", alt="")                        
+                      .reviews__author-info
+                        .reviews__author-name= nameArr[i]
+                        .reviews__author-profession= professionArr[i]
+                        - i++
+                    .form-line
+                    .reviews__content
+                      p.reviews__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                      .reviews__controls
+                        button(type="button").btn-edit.btn-edit--reviews Править
+                        button(type="button").btn-discard.btn-discard--reviews Удалить
 
 
                         
@@ -157,8 +208,18 @@ export default {};
 
 //base
 
+html {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
 * {
   box-sizing: border-box;
+  font-family: Open Sans;
 }
 
 .wrap {
@@ -169,14 +230,17 @@ export default {};
 input {
   border: none;
   padding-bottom: 2%;
-  border-bottom: 1px solid;
-  font-family: Open Sans;
+  border-bottom: 1px solid;  
   font-size: 18px;
   font-weight: 600;
   outline: none;
   &:placeholder {
     color: #414c63;
   }
+}
+
+button {
+  outline: none;
 }
 
 h1,
@@ -186,6 +250,11 @@ h4,
 h5 {
   margin: 0;
   padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100%;
 }
 
 ul,
@@ -198,7 +267,10 @@ li {
 .container {
   padding: 0 3%;
   margin: 0 auto;
-  width: 1200px;
+  width: 80%;
+  @media screen and (max-width: 768px) {
+    width: 95%;
+  }
 }
 
 .form {
@@ -210,8 +282,7 @@ li {
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-label {
-  font-family: Open Sans;
+label {  
   font-size: 16px;
   font-weight: 600;
   color: rgba(65, 76, 99, 0.5);
@@ -224,8 +295,7 @@ button {
   border: none;
 }
 
-.btn-main {
-  font-family: Open Sans;
+.btn-main {  
   font-size: 16px;
   font-weight: bold;
   color: #fff;
@@ -301,8 +371,7 @@ button {
 }
 
 .header__author-name {
-  margin-left: 25px;
-  font-family: Open Sans;
+  margin-left: 25px;  
   font-size: 18px;
   font-weight: 600;
   color: #ffffff;
@@ -310,22 +379,20 @@ button {
 
 .header__title {
   margin-left: 25px;
-  opacity: 0.5;
-  font-family: Open Sans;
+  opacity: 0.5;  
   font-size: 14px;
   color: #fff;
 }
 
 .header__exit-link {
   opacity: 0.7;
-  font-family: Open Sans;
   font-size: 16px;
   color: #fff;
 }
 
 //navigation
 .nav {
-  width: 25%;
+  width: 300px;
   padding-top: 15px;
 }
 
@@ -337,16 +404,25 @@ button {
 
 .nav__item {
   text-align: center;
-  width: 28%;
-  font-family: Open Sans;
-  font-size: 16px;
-  font-weight: 600;
-  color: #383bcf;
-  padding-bottom: 20px;
+  width: 28%;  
 }
 
-.nav__item--active {
+.nav__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  color: #414c63;  
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+
+.nav__item--active {  
   border-bottom: 2px solid #383bcf;
+  &> .nav__link {
+    color: #383bcf;
+  }
 }
 //about
 
@@ -366,7 +442,6 @@ button {
 }
 
 .title {
-  font-family: Open Sans;
   font-size: 21px;
   font-weight: bold;
   color: #414c63;
@@ -383,7 +458,6 @@ button {
 
 .about__addgroup-text {
   margin-left: 13px;
-  font-family: Open Sans;
   font-size: 16px;
   font-weight: 600;
   color: #383bcf;
@@ -446,7 +520,6 @@ button {
   height: 70%;
   padding-top: 20px;
   margin-left: 2%;
-  font-family: Open Sans;
   font-size: 16px;
   color: #414c63;
 }
@@ -504,6 +577,7 @@ button {
 
 //work
 .works {
+  padding-top: 40px;
   background-image: url("../images/content/mountain.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -514,7 +588,6 @@ button {
   margin-top: 20px;
   padding: 2%;
   width: 100%;
-  height: 775px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
 }
@@ -530,6 +603,11 @@ button {
   padding-top: 48px;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .works-form__download-area {
@@ -540,6 +618,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
+}
+
+.works__download-btn {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 
 .works-form__title {
@@ -555,17 +642,26 @@ button {
 
 .works-form__download-desc {
   opacity: 0.5;
-  font-family: Open Sans;
   font-size: 16px;
   font-weight: 600;
   line-height: 2.12;
   color: rgba(65, 76, 99);
 }
 
+.download-tabletbtn {
+  @media screen and (min-width: 769px) {
+    display: none;    
+  }
+}
+
 .works-form__main-content {
   width: 52%;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 768px) {
+    padding-top: 30px;
+    width: 80%;   
+  }
 }
 
 .works-form__label {
@@ -588,7 +684,6 @@ button {
   resize: none;
   outline: none;
   margin-top: 20px;
-  font-family: Open Sans;
   font-size: 16px;
   font-weight: 600;
   padding: 20px 81px 20px 20px;
@@ -642,11 +737,24 @@ button {
 
 .works__list {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1%;
 }
 
 .works__item {
-  width: 32%;
-  height: 556px;
+  margin: 10px;
+  margin-left: 1%;
+  width: 31%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
+  @media screen and (max-width: 768px) {
+    width: 47%;   
+  }
+}
+
+.works__content {
+  padding: 40px 30px;
 }
 
 .works__item--new {
@@ -666,7 +774,6 @@ button {
   height: 150px;
   background: transparent;
   border: 1px solid #fff;
-  font-family: Open Sans;
   font-size: 72px;
   font-weight: 300;
   font-style: normal;
@@ -676,7 +783,6 @@ button {
   margin-top: 30px;
   text-align: center;
   width: 30%;
-  font-family: Open Sans;
   font-size: 18px;
   font-weight: bold;
   font-style: normal;
@@ -684,6 +790,7 @@ button {
 }
 
 .works__controls {
+  margin-top: 45px;
   display: flex;
   justify-content: space-between;
 }
@@ -697,7 +804,6 @@ button {
   background-size: 14px 14px;
   text-align: left;
   color: rgba(65, 76, 99, 0.5);
-  font-family: Open Sans;
   font-size: 16px;
   font-weight: 600;
 }
@@ -709,9 +815,280 @@ button {
   height: 30px;
   text-align: left;
   color: rgba(65, 76, 99, 0.5);
-  font-family: Open Sans;
   font-size: 16px;
   font-weight: 600;
+}
+
+.works__title {  
+  font-size: 18px;
+  font-weight: bold;
+  color: #414c63;
+}
+
+.works__pic {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  vertical-align: top;
+}
+
+.works__desc {
+  font-size: 16px;
+  line-height: 1.88;
+  font-weight: 600;
+  color: rgba(65, 76, 99, 0.7);
+  width: 95%;
+}
+
+.works__link {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #383bcf;
+}
+
+// Отзывы
+
+.reviews{
+  padding-top: 40px;
+  background-image: url("../images/content/mountain.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.reviews-form__title {
+  padding-bottom: 30px;
+  font-size: 21px;
+  font-weight: bold;
+  color: #414c63;
+}
+
+.reviews-form {
+  box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
+  padding: 30px;
+}
+
+.reviews-form__content {
+  padding: 50px 30px;
+  display: flex;
+}
+
+.reviews-form__avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.reviews-form__avatar-block {
+  width: 100px;
+  height: 100px;
+  background: svg-load("user.svg", fill=#fff, width=100%, height=100%) 50% 50% /
+  center no-repeat;
+  background-color: #dee4ed;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+.form__addphoto-btn {
+  margin-top: 10px;
+  background: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #383bcf;
+}
+
+.reviews-form__main-content {
+  margin-left: 1%;;
+  width: 74%;  
+}
+
+.reviews-form__block-text {
+  margin-top: 30px;
+}
+.reviews-form__row {
+  display: flex;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.reviews-form__input-name,
+.reviews-form__input-profession,
+.reviews-form__text {
+  width: 95%;
+  margin-bottom: 30px;
+  display: block;
+}
+
+.reviews-form__block-name,
+.reviews-form__block-profession {
+  width: 49%;
+  @media screen and (max-width: 768px) {
+    width: 100%;   
+  }
+}
+
+.reviews-form__text {
+  width: 100%;
+  height: 116px;
+  resize: none;
+  outline: none;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 20px 81px 20px 20px;
+}
+
+.reviews-form__controls {
+  display: flex;
+  justify-content: flex-end;
+}
+.reviews__item--new {
+  display: flex;
+}
+
+.reviews__item--new {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #006aed, #3f35cb);
+}
+
+.btn-addnew--reviews {
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border: 1px solid #fff;
+  font-size: 72px;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.reviews__addnew-desc {
+  margin-top: 30px;
+  text-align: center;
+  width: 30%;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  color: #ffffff;
+}
+
+.reviews__controls {
+  margin-top: 45px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-edit--reviews {
+  background: svg-load("pencil.svg", fill=#383bcf, width=100%, height=100%) 0
+  100% / contain no-repeat;  
+  width: 100px;
+  height: 30px;
+  background-position: 100% 50%;
+  background-size: 14px 14px;
+  text-align: left;
+  color: rgba(65, 76, 99, 0.5);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-discard--reviews {
+  width: 100px;
+  background-position: 100% 50%;
+  background-size: 15px 12px;
+  height: 30px;
+  text-align: left;
+  color: rgba(65, 76, 99, 0.5);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.reviews__list-wrap {
+  width: 100%;
+  padding: 30px 0;  
+}
+
+.reviews__list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1%;
+  @media screen and (max-width: 768px) {   
+    margin-left: -1%;
+  }
+}
+
+.reviews__item {
+  padding: 40px 15px;
+  margin: 10px;
+  margin-left: 1%;
+  width: 31%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
+  
+  @media screen and (max-width: 768px) {
+    width: 47%;
+    margin-left: 1%;
+  }
+}
+
+.reviews__title {  
+  font-size: 18px;
+  font-weight: bold;
+  color: #414c63;
+  padding-bottom: 20px;
+}
+
+.reviews__desc {
+  font-size: 16px;
+  line-height: 1.88;
+  font-weight: 600;
+  color: rgba(65, 76, 99, 0.7);
+  width: 95%;
+}
+
+.reviews__link {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #383bcf;
+}
+
+.reviews__avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.reviews__pic {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.reviews__author-info {
+  margin-left: 3%;
+}
+
+.reviews__author {
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.reviews__author-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #414c63;
+}
+
+.reviews__author-profession {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(65, 76, 99, 0.5);
 }
 
 </style>
