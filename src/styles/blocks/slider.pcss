@@ -170,6 +170,10 @@
   padding-left: 163px;
   z-index: 0;
 
+  @media screen and (max-width: 1140px) {
+    padding-left: 130px;
+  }
+
   @include tablets {
     padding-left: 15%;
     display: flex;
@@ -199,11 +203,29 @@
 
   &:not(:first-child) {
     margin-left: 15px;
+
+    @media screen and (max-width: 1140px) {      
+      margin-left: 5px;
+    }
+
+     @include tablets {
+       margin-left: 15px;
+     }
   }
 
   font-weight: 400;
   color: $dblue-color;
   border-radius: 25px;
+
+  @media screen and (max-width: 1140px) {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  @include tablets {
+    padding: 13px 19px;
+    font-size: 16px;
+  }
 }
 
 .works-slider__title {
@@ -212,6 +234,10 @@
   font-weight: bold;
   line-height: 1.6;
   color: $dblue-color;
+
+  @media screen and (max-width: 1140px) {
+    font-size: 23px;
+  }
 }
 
 .works-slider__text {

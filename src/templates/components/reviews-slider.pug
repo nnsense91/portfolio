@@ -19,8 +19,8 @@ script(type="text/x-template")#review-template
         .reviews__text.main-text
             p {{review.text}}
         .reviews__author
-            .avatar__block
-                img(:src="review.avatar" :alt="review.author").author__avatar
+            .reviews__avatar-block
+                img(:src="review.avatar" :alt="review.author").reviews__author-avatar
             .reviews__author-wrap
                 .reviews__author-name {{review.author}}
                 .reviews__author-occupation.main-text {{review.position}}
