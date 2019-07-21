@@ -230,7 +230,7 @@ html {
 input {
   border: none;
   padding-bottom: 2%;
-  border-bottom: 1px solid;  
+  border-bottom: 1px solid;
   font-size: 18px;
   font-weight: 600;
   outline: none;
@@ -282,7 +282,7 @@ li {
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-label {  
+label {
   font-size: 16px;
   font-weight: 600;
   color: rgba(65, 76, 99, 0.5);
@@ -295,7 +295,7 @@ button {
   border: none;
 }
 
-.btn-main {  
+.btn-main {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
@@ -323,14 +323,14 @@ button {
   width: 15px;
   height: 12px;
   background: svg-load("cross.svg", fill=#bf2929, width=100%, height=100%) 0
-  100% / contain no-repeat;
+    100% / contain no-repeat;
 }
 
 .btn-edit {
   width: 14px;
   height: 14px;
   background: svg-load("pencil.svg", fill=#a0a5b1, width=100%, height=100%) 0
-  100% / contain no-repeat;
+    100% / contain no-repeat;
 }
 
 .btn-delete {
@@ -371,7 +371,7 @@ button {
 }
 
 .header__author-name {
-  margin-left: 25px;  
+  margin-left: 25px;
   font-size: 18px;
   font-weight: 600;
   color: #ffffff;
@@ -379,7 +379,7 @@ button {
 
 .header__title {
   margin-left: 25px;
-  opacity: 0.5;  
+  opacity: 0.5;
   font-size: 14px;
   color: #fff;
 }
@@ -404,7 +404,7 @@ button {
 
 .nav__item {
   text-align: center;
-  width: 28%;  
+  width: 28%;
 }
 
 .nav__link {
@@ -413,14 +413,14 @@ button {
   height: 100%;
   font-size: 16px;
   font-weight: 600;
-  color: #414c63;  
+  color: #414c63;
   padding-bottom: 20px;
   text-decoration: none;
 }
 
-.nav__item--active {  
+.nav__item--active {
   border-bottom: 2px solid #383bcf;
-  &> .nav__link {
+  & > .nav__link {
     color: #383bcf;
   }
 }
@@ -439,6 +439,11 @@ button {
 .about__title-row {
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 420px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .title {
@@ -449,6 +454,10 @@ button {
 
 .about__addgroup {
   margin-left: 100px;
+
+  @media screen and (max-width: 420px) {
+    margin-left: 0;
+  }
 }
 
 .form__btn-addnew--group {
@@ -489,6 +498,10 @@ button {
   height: 387px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
 }
 
 .skills-form {
@@ -650,7 +663,7 @@ button {
 
 .download-tabletbtn {
   @media screen and (min-width: 769px) {
-    display: none;    
+    display: none;
   }
 }
 
@@ -660,7 +673,7 @@ button {
   flex-direction: column;
   @media screen and (max-width: 768px) {
     padding-top: 30px;
-    width: 80%;   
+    width: 80%;
   }
 }
 
@@ -692,6 +705,11 @@ button {
 .works-form__tag-list {
   margin-top: 20px;
   display: flex;
+
+  @media screen and (max-width: 440px) {
+    margin-left: -10px;
+    justify-content: center;
+  }
 }
 
 .works-form__tag-item {
@@ -699,6 +717,10 @@ button {
   border-radius: 15px;
   background-color: #f4f4f4;
   margin-left: 10px;
+
+  @media screen and (max-width: 440px) {
+    padding: 1px 10px;
+  }
 }
 
 .works-form__tag-name {
@@ -709,13 +731,21 @@ button {
   &::after {
     content: "+";
     vertical-align: middle;
-    display: inline-block;
+    display: inline-flex;
     margin-left: 10px;
     font-size: 25px;
     font-weight: 600;
     color: rgba(40, 51, 64, 0.7);
     transform: rotate(45deg);
     cursor: pointer;
+
+    @media screen and (max-width: 420px) {
+      margin-left: 5px;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
   }
 }
 
@@ -729,10 +759,9 @@ button {
   color: #383bcf;
 }
 
-
 .works__list-wrap {
   width: 100%;
-  padding: 30px 0;  
+  padding: 30px 0;
 }
 
 .works__list {
@@ -748,8 +777,13 @@ button {
   width: 31%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
+
   @media screen and (max-width: 768px) {
-    width: 47%;   
+    width: 47%;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 100%;
   }
 }
 
@@ -759,14 +793,16 @@ button {
 
 .works__item--new {
   display: flex;
-}
-
-.works__item--new {
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #006aed, #3f35cb);
+
+  @media screen and (max-width: 440px) {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 0;
+  }
 }
 
 .btn-addnew--works {
@@ -777,6 +813,13 @@ button {
   font-size: 72px;
   font-weight: 300;
   font-style: normal;
+
+  @media screen and (max-width: 440px) {
+    width: 50px;
+    height: 50px;
+    line-height: 1;
+    font-size: 36px;
+  }
 }
 
 .works__addnew-desc {
@@ -787,6 +830,12 @@ button {
   font-weight: bold;
   font-style: normal;
   color: #ffffff;
+
+  @media screen and (max-width: 440px) {
+    margin-top: 0;
+    width: 50%;
+    margin-left: 20px;
+  }
 }
 
 .works__controls {
@@ -797,7 +846,7 @@ button {
 
 .btn-edit--works {
   background: svg-load("pencil.svg", fill=#383bcf, width=100%, height=100%) 0
-  100% / contain no-repeat;  
+    100% / contain no-repeat;
   width: 100px;
   height: 30px;
   background-position: 100% 50%;
@@ -819,7 +868,7 @@ button {
   font-weight: 600;
 }
 
-.works__title {  
+.works__title {
   font-size: 18px;
   font-weight: bold;
   color: #414c63;
@@ -849,7 +898,7 @@ button {
 
 // Отзывы
 
-.reviews{
+.reviews {
   padding-top: 40px;
   background-image: url("../images/content/mountain.jpg");
   background-repeat: no-repeat;
@@ -872,6 +921,11 @@ button {
 .reviews-form__content {
   padding: 50px 30px;
   display: flex;
+
+  @media screen and (max-width: 440px) {
+    padding: 0;
+    flex-direction: column;
+  }
 }
 
 .reviews-form__avatar-wrap {
@@ -879,18 +933,27 @@ button {
   flex-direction: column;
   align-items: center;
   width: 25%;
+
+  @media screen and (max-width: 440px) {
+    margin-top: 20px;
+    width: 100%;
+  }
 }
 
 .reviews-form__avatar-block {
   width: 100px;
   height: 100px;
   background: svg-load("user.svg", fill=#fff, width=100%, height=100%) 50% 50% /
-  center no-repeat;
+    center no-repeat;
   background-color: #dee4ed;
   border-radius: 50%;
   overflow: hidden;
-}
 
+  @media screen and (max-width: 440px) {
+    width: 200px;
+    height: 200px;
+  }
+}
 
 .form__addphoto-btn {
   margin-top: 10px;
@@ -901,8 +964,14 @@ button {
 }
 
 .reviews-form__main-content {
-  margin-left: 1%;;
-  width: 74%;  
+  margin-left: 1%;
+  width: 74%;
+
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }
 
 .reviews-form__block-text {
@@ -927,7 +996,7 @@ button {
 .reviews-form__block-profession {
   width: 49%;
   @media screen and (max-width: 768px) {
-    width: 100%;   
+    width: 100%;
   }
 }
 
@@ -940,6 +1009,10 @@ button {
   font-size: 16px;
   font-weight: 600;
   padding: 20px 81px 20px 20px;
+
+  @media screen and (max-width: 440px) {
+    padding: 10px;
+  }
 }
 
 .reviews-form__controls {
@@ -956,6 +1029,12 @@ button {
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #006aed, #3f35cb);
+
+  @media screen and (max-width: 440px) {
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 0;
+  }
 }
 
 .btn-addnew--reviews {
@@ -966,6 +1045,13 @@ button {
   font-size: 72px;
   font-weight: 300;
   font-style: normal;
+
+  @media screen and (max-width: 440px) {
+    width: 50px;
+    height: 50px;
+    line-height: 1;
+    font-size: 36px;
+  }
 }
 
 .reviews__addnew-desc {
@@ -976,6 +1062,12 @@ button {
   font-weight: bold;
   font-style: normal;
   color: #ffffff;
+
+  @media screen and (max-width: 440px) {
+    margin-top: 0;
+    width: 50%;
+    margin-left: 20px;
+  }
 }
 
 .reviews__controls {
@@ -986,7 +1078,7 @@ button {
 
 .btn-edit--reviews {
   background: svg-load("pencil.svg", fill=#383bcf, width=100%, height=100%) 0
-  100% / contain no-repeat;  
+    100% / contain no-repeat;
   width: 100px;
   height: 30px;
   background-position: 100% 50%;
@@ -1010,7 +1102,7 @@ button {
 
 .reviews__list-wrap {
   width: 100%;
-  padding: 30px 0;  
+  padding: 30px 0;
 }
 
 .reviews__list {
@@ -1018,7 +1110,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   margin-left: -1%;
-  @media screen and (max-width: 768px) {   
+  @media screen and (max-width: 768px) {
     margin-left: -1%;
   }
 }
@@ -1030,14 +1122,19 @@ button {
   width: 31%;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
-  
+
   @media screen and (max-width: 768px) {
     width: 47%;
     margin-left: 1%;
   }
+
+  @media screen and (max-width: 440px) {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
-.reviews__title {  
+.reviews__title {
   font-size: 18px;
   font-weight: bold;
   color: #414c63;
@@ -1090,5 +1187,4 @@ button {
   font-weight: 600;
   color: rgba(65, 76, 99, 0.5);
 }
-
 </style>
