@@ -8,3 +8,15 @@ import "./scripts/skills";
 import "./scripts/slider";
 import "./scripts/reviews-slider";
 import "./scripts/focus";
+
+import Validate from "./scripts/form";
+
+const form = document.querySelector(".j-form");
+
+if (form) {
+  const validate = new Validate({
+    element: ".j-form"
+  });
+
+  validate.init();
+}
