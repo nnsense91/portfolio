@@ -5,19 +5,19 @@ form.form.j-form(action="" method="")
                 .form__data
                     +icon("avatar", "form__ico form__ico-user")
                     input(type="text", id="name", class="form__input form__input-name", placeholder="Ковальчук Дмитрий" autocomplete="off" required)
-            .form__error.hidden
+            .form__error.j-error-block
         .input__wrap
             label.form__label.j-email.j-block(for="e-mail") Введите ваш email
                 .form__data
                     +icon("envelope", "form__ico form__ico-mail")
                     input(type="text", id="e-mail", class="form__input form__input-email", placeholder="loftschool@study.com" autocomplete="off" required)
-            .form__error
+            .form__error.j-error-block
     .form__row
         .input__wrap.input__wrap--message
             label.form__label.j-text.j-block(for="message") Сообщение к письму
                 .form__data
                     +icon("chat", "form__ico form__ico-message")
                     textarea(cols="30", rows="2", id="message", class="form__message", placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса" autocomplete="off" required)
-            .form__error.hidden
+            .form__error.j-error-block
     .form__row.form__row-btn.j-submit-btn
         button(type="submit", class="form__submit") Отправить
