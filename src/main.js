@@ -8,6 +8,7 @@ import "./scripts/skills";
 import "./scripts/slider";
 import "./scripts/reviews-slider";
 import "./scripts/focus";
+import "./scripts/anchor-scroll";
 
 import Validate from "./scripts/form";
 
