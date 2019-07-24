@@ -3,9 +3,9 @@ script(type="text/x-template")#reviews-template
         .reviews__title-wrap
             h2.reviews__title.title Что обо мне говорят
             .reviews__control
-                button(type="button" @click="previous()").reviews__button.reviews__button-left
+                button(ref="prev" type="button" @click="previous()").reviews__button.reviews__button-left
                     +icon("shortarrow", "reviews__control-ico reviews__control-left")
-                button(type="button" @click="next()").reviews__button.reviews__button-right
+                button(ref="next" type="button" @click="next()").reviews__button.reviews__button-right
                     +icon("shortarrow", "reviews__control-ico reviews__control-right")
         .reviews__wrap
             flickity(ref="flickity" :options="flickityOptions")

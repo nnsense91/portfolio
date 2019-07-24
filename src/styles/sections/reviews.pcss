@@ -109,6 +109,8 @@
   border-radius: 50%;
   border: 1px solid $color-white;
   outline: none;
+  transition: 0.4s;
+
   &:not(:first-child) {
     margin-left: 30px;
   }
@@ -116,7 +118,22 @@
     border: 1px solid $color-orange;
   }
   &:hover > .reviews__control-ico {
+    transition: 0.4s;
     fill: $color-orange;
+  }
+}
+
+.reviews__button--disabled {
+  cursor: default;
+  border: 1px solid #75787a;
+  & > .reviews__control-ico {
+    fill: #75787a;
+  }
+  &:hover {
+    border: 1px solid #75787a;
+  }
+  &:hover > .reviews__control-ico {
+    fill: #75787a;
   }
 }
 

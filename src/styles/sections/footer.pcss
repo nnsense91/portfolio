@@ -171,4 +171,12 @@ footer {
 .footer__col-quote {
   margin-left: 10%;
   width: 80%;
+
+  @include tablets {
+    margin-left: 0;
+  }
+
+  @include phones {
+    margin-left: 10%;
+  }
 }
