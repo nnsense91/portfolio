@@ -41,6 +41,13 @@
   }
 }
 
+.socials__link:focus {
+  outline: none;
+  & .socials-ico {
+    fill: $color-orange;
+  }
+}
+
 .socials--header {
   @include phones {
     display: none;

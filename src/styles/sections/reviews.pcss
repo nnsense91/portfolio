@@ -111,6 +111,14 @@
   outline: none;
   transition: 0.4s;
 
+  &:focus {
+    border: 1px solid $color-orange;
+  }
+
+  &:focus > .reviews__control-ico {
+    fill: $color-orange;
+  }
+
   &:not(:first-child) {
     margin-left: 30px;
   }
@@ -129,6 +137,14 @@
   & > .reviews__control-ico {
     fill: #75787a;
   }
+
+  &:focus {
+    border: 1px solid #75787a;
+    outline: 1px solid $color-orange;
+  }
+  &:focus > .reviews__control-ico {
+    fill: #75787a;
+  }
   &:hover {
     border: 1px solid #75787a;
   }
@@ -141,6 +157,7 @@
   fill: $color-white;
   width: 8px;
   height: 10px;
+  transition: 0.4s;
 }
 
 .reviews__control-left {

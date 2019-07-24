@@ -36,9 +36,9 @@ new Vue({
             })
         },
         next() {
-            this.$refs.prev.classList.remove("reviews__button--disabled")
-            this.$refs.next.classList.remove("reviews__button--disabled")
             if (this.flag < this.reviews.length/2 - 1) {
+                this.$refs.prev.classList.remove("reviews__button--disabled")
+                this.$refs.next.classList.remove("reviews__button--disabled")
                 this.$refs.flickity.next();
                 this.flag++;
                 if (this.flag >= this.reviews.length/2 - 1) {
@@ -48,9 +48,9 @@ new Vue({
             console.log(this.flag);                        
         },
         previous() {
-            this.$refs.prev.classList.remove("reviews__button--disabled")
-            this.$refs.next.classList.remove("reviews__button--disabled")
             if (this.flag > 0) {
+                this.$refs.prev.classList.remove("reviews__button--disabled")
+                this.$refs.next.classList.remove("reviews__button--disabled")
                 this.$refs.flickity.previous();
                 this.flag--;
                 if (this.flag <= 0){
