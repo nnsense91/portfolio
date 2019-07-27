@@ -8,7 +8,7 @@
           h1.header__author-name Иван Егоров
           .header__title Панель администрирования
         .header__exit
-          a(href="#").header__exit-link Выйти
+          button(type="button" href="#" title="Выход").header__exit-link Выйти
     section.navigation
       .container.navigation__container
         nav.nav
@@ -16,86 +16,87 @@
             - var pages= ["Обо мне", "Работы", "Отзывы"]
             each item in pages
               li.nav__item.nav__item--active
-                a(href="#").nav__link= item
+                button(type="button" href="#" title="меню").nav__link= item
     section.about
       .container.about__container
         .about__title-row
           h2.about__title.title Блок "Обо мне"
           .about__addgroup
-            button(type="button").btn-addnew.form__btn-addnew--group +
-            span.about__addgroup-text Добавить группу
+            button(type="button" title="Добавить новую группу").btn-addnew.form__btn-addnew--group
+              .btn-addnew__plus.btn-addnew__plus--group +
+              span.about__addgroup-text Добавить&nbspгруппу
         .about__content
           .about__skills
             ul.skills__group-list
                 li.skills-item
                   form.form.skills-form
-                    label.skills-form__groupname-block
-                      input(placeholder="Название новой группы").skills-form__groupname
+                    .skills-form__groupname-block
+                      input(type="text" placeholder="Название новой группы").skills-form__groupname
                       .skills-form__groupname-control
-                        button(type="button").btn-apply
-                        button(type="button").btn-discard
+                        button(type="button" title="Принять").btn-apply
+                        button(type="button" title="Отменить").btn-discard
                     .form-line
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                    label.skills-form__new-skillblock
-                      input(placeholder="Новый навык").skills-form__new-skillname
-                      input(value="100").skills-form__new-skillpercent
-                      button(type="button").btn-addnew.skills-form__btn-addnew--skill +
+                    .skills-form__new-skillblock
+                      input(type="text" placeholder="Новый навык").skills-form__new-skillname
+                      input(type="text" value="100").skills-form__new-skillpercent
+                      button(type="button" title="Добавить новый навык").btn-addnew__plus.skills-form__btn-addnew--skill +
                 li.skills-item
                   form.form.skills-form
-                    label.skills-form__groupname-block
-                      input(placeholder="Название новой группы").skills-form__groupname
+                    .skills-form__groupname-block
+                      input(type="text" placeholder="Название новой группы").skills-form__groupname
                       .skills-form__groupname-control
-                        button(type="button").btn-apply
-                        button(type="button").btn-discard
+                        button(type="button" title="Принять").btn-apply
+                        button(type="button" title="Отменить").btn-discard
                     .form-line
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                        - var skillsArray = [{text:"Git", value:"100"}, {text:"Terminal", value:"90"}, {text:"Gulp", value:"80"}, {text:"Webpack", value:"85"}]
-                        each item in skillsArray
-                          li.skills-form__skills-item
-                            table.skills-form__skills-table
-                              tr.skills-form__skills-row
-                                td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
-                                td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
-                                td.skills-form__skills-cell.skills-form__skills-cell--percent %
-                                td.skills-form__skills-cell.skills-form__skills-cell--control
-                                  .skills-form__skills-control
-                                    button(type="button").btn-edit
-                                    button(type="button").btn-delete
-                    label.skills-form__new-skillblock
-                      input(placeholder="Новый навык").skills-form__new-skillname
-                      input(value="100").skills-form__new-skillpercent
-                      button(type="button").btn-addnew.skills-form__btn-addnew--skill +
+                          - var skillsArray = [{text:"Git", value:"100"}, {text:"Terminal", value:"90"}, {text:"Gulp", value:"80"}, {text:"Webpack", value:"85"}]
+                            each item in skillsArray
+                              li.skills-form__skills-item
+                                table.skills-form__skills-table
+                                  tr.skills-form__skills-row
+                                    td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
+                                    td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
+                                    td.skills-form__skills-cell.skills-form__skills-cell--percent %
+                                    td.skills-form__skills-cell.skills-form__skills-cell--control
+                                      .skills-form__skills-control
+                                        button(type="button" title="Редактировать").btn-edit
+                                        button(type="button" title="Удалить").btn-delete
+                    .skills-form__new-skillblock
+                      input(type="text" placeholder="Новый навык").skills-form__new-skillname
+                      input(type="text" value="100").skills-form__new-skillpercent
+                      button(type="button" title="Добавить новый навык").btn-addnew__plus.skills-form__btn-addnew--skill +
                 li.skills-item
                   form.form.skills-form
-                    label.skills-form__groupname-block
-                      input(placeholder="Название новой группы").skills-form__groupname
+                    .skills-form__groupname-block
+                      input(type="text" placeholder="Название новой группы").skills-form__groupname
                       .skills-form__groupname-control
-                        button(type="button").btn-apply
-                        button(type="button").btn-discard
+                        button(type="button" title="Принять").btn-apply
+                        button(type="button" title="Отменить").btn-discard
                     .form-line
                     .skills-form__content
                       .skills-form__skills
                         ul.skills-form__skills-list
-                        - var skillsArray = [{text:"HTML5", value:"100"}, {text:"CSS", value:"90"}, {text:"JavaScript", value:"80"}, {text:"Jquery и Vue.js", value:"85"}]
-                        each item in skillsArray
-                          li.skills-form__skills-item
-                            table.skills-form__skills-table
-                              tr.skills-form__skills-row
-                                td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
-                                td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
-                                td.skills-form__skills-cell.skills-form__skills-cell--percent %
-                                td.skills-form__skills-cell.skills-form__skills-cell--control
-                                  .skills-form__skills-control
-                                    button(type="button").btn-edit
-                                    button(type="button").btn-delete
-                    label.skills-form__new-skillblock
-                      input(placeholder="Новый навык").skills-form__new-skillname
-                      input(value="100").skills-form__new-skillpercent
-                      button(type="button").btn-addnew.skills-form__btn-addnew--skill +
+                          - var skillsArray = [{text:"HTML5", value:"100"}, {text:"CSS", value:"90"}, {text:"JavaScript", value:"80"}, {text:"Jquery и Vue.js", value:"85"}]
+                            each item in skillsArray
+                              li.skills-form__skills-item
+                                table.skills-form__skills-table
+                                  tr.skills-form__skills-row
+                                    td.skills-form__skills-cell.skills-form__skills-cell--name= item.text
+                                    td.skills-form__skills-cell.skills-form__skills-cell--value= item.value
+                                    td.skills-form__skills-cell.skills-form__skills-cell--percent %
+                                    td.skills-form__skills-cell.skills-form__skills-cell--control
+                                      .skills-form__skills-control
+                                        button(type="button" title="Редактировать").btn-edit
+                                        button(type="button" title="Удалить").btn-delete
+                    .skills-form__new-skillblock
+                      input(type="text" placeholder="Новый навык").skills-form__new-skillname
+                      input(type="text" value="100").skills-form__new-skillpercent
+                      button(type="button" title="Добавить новый навык").btn-addnew__plus.skills-form__btn-addnew--skill +
     section.works
       .container
         h2.about__title.title Блок "Работы"
@@ -106,46 +107,47 @@
             .works-form__content
               .works-form__download-area
                 .works-form__download-content
-                  p.works-form__download-desc Перетащите или загрузите для загрузки изображения
-                  button(type="button").btn-main.works__download-btn ЗАГРУЗИТЬ
-              button(type="button").btn-main--cancel.download-tabletbtn Изменить превью
+                  .works-form__download-desc Перетащите или загрузите для загрузки изображения
+                  button(type="button" title="Загрузить").btn-main.works__download-btn загрузить
+              button(type="button" title="Изменить").btn-main--cancel.download-tabletbtn Изменить превью
               .works-form__main-content
                 label.works-form__label Название
-                  input(value="Дизайн сайта для авто салона Porsche").works-form__new-title
+                  input(type="text" value="Дизайн сайта для авто салона Porsche").works-form__new-title
                 label.works-form__label Ссылка
-                  input(value="https://www.porsche-pulkovo.ru").works-form__new-link
+                  input(type="url" value="https://www.porsche-pulkovo.ru").works-form__new-link
                 label.works-form__label Описание
                   textarea.works-form__new-desc Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей
                 label.works-form__label Добавление тега
-                  input(value="Jquery, Vue,js, HTML5").works-form__new-tag                  
+                  input(type="text" value="Jquery, Vue,js, HTML5").works-form__new-tag                  
                   ul.works-form__tag-list
                     - var tags = ["Jquery", "Vue.js", "HTML5"]
                     each item in tags
                       li.works-form__tag-item
-                        span.works-form__tag-name= item
+                        .works-form__tag-name= item
+                        button(type="button" title="Удалить тег").works-form__btn-delete &#215
                 .works-form__controls
-                  button(type="button").btn-main.btn-main--cancel Отмена
-                  button(type="button").btn-main СОХРАНИТЬ
+                  button(type="button" title="Отмена").btn-main.btn-main--cancel Отмена
+                  button(type="button" title="Сохранить").btn-main сохранить
         .works__list-wrap
           ul.works__list
-            li.works__item.works__item--new
-              button(type="button").btn-addnew.btn-addnew--works +
+            button.works__item.works__item--new
+              button(type="button" title="Добавить новый проект").btn-addnew.btn-addnew--works +
               .works__addnew-desc Добавить работу
-              - var worksData = {title: "Сайт школы образования", desc: "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!", link: "http://loftschool.ru"}
-              - var slideArr = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg", "slide5.jpg"]
-              - var i = 0
-              each item in slideArr                             
-                li.works__item
-                  .works__pic-block
-                    img(src="../images/content/" + slideArr[i], class="works__pic", alt="")
-                    - i++
-                  .works__content
-                    h3.works__title= worksData.title
-                    p.works__desc= worksData.desc
-                    a(href="#").works__link= worksData.link
-                    .works__controls
-                      button(type="button").btn-edit.btn-edit--works Править
-                      button(type="button").btn-discard.btn-discard--works Удалить
+            - var worksData = {title: "Сайт школы образования", desc: "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!", link: "http://loftschool.ru"}
+            - var slideArr = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg", "slide5.jpg"]
+            - var i = 0
+            each item in slideArr                             
+              li.works__item
+                .works__pic-block
+                  img(src="../images/content/" + slideArr[i], class="works__pic", alt="")
+                  - i++
+                .works__content
+                  h3.works__title= worksData.title
+                  p.works__desc= worksData.desc
+                  a(href="#").works__link= worksData.link
+                  .works__controls
+                    button(type="button" title="Редактировать").btn-edit.btn-edit--works Править
+                    button(type="button" title="Удалить").btn-discard.btn-discard--works Удалить
     section.reviews
       .container
         h2.title.reviews__title Блок "Отзывы"
@@ -156,43 +158,43 @@
             .reviews-form__content
               .reviews-form__avatar-wrap
                 .reviews-form__avatar-block                
-                button(type="button").form__addphoto-btn Добавить фото
+                button(type="button" title="Добавить фото").form__addphoto-btn Добавить фото
               .reviews-form__main-content
                 .reviews-form__row
                   label.reviews-form__block-name Имя автора
-                    input(value="Ковальчук Дмитрий").reviews-form__input-name
+                    input(type="text" value="Ковальчук Дмитрий").reviews-form__input-name
                   label.reviews-form__block-profession Титул автора
-                    input(value="Основатель LoftSchool").reviews-form__input-profession
+                    input(type="text" value="Основатель LoftSchool").reviews-form__input-profession
                 label.reviews-form__block-text Отзыв
                   textarea.reviews-form__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
                 .reviews-form__controls
-                  button(type="button").btn-main.btn-main--cancel Отмена
-                  button(type="button").btn-main СОХРАНИТЬ
+                  button(type="button" title="Отмена").btn-main.btn-main--cancel Отмена
+                  button(type="button" title="Сохранить").btn-main сохранить
         .reviews__main-content
           .reviews__list-wrap
             ul.reviews__list
-              li.reviews__item.reviews__item--new
-                button(type="button").btn-addnew.btn-addnew--reviews +
+              button.reviews__item.reviews__item--new
+                button(type="button" title="Добавить новый отзыв").btn-addnew.btn-addnew--reviews +
                 .reviews__addnew-desc Добавить отзыв
-                - var nameArr = ["Владимир Сабанцев", "Ковальчук Дмитрий", "Петров Сергей", "Степан Реактивный", "Федор Сумкин"]
-                - var avatarArr = ["kovalchuk.png", "sabancev.png", "kovalchuk.png", "sabancev.png", "sabancev.png"]
-                - var professionArr = ["Преподаватель", "Основатель LoftSchool", "Водитель автобуса", "Работник Почты России", "Шахтер"]
-                - var i = 0
-                each item in slideArr                             
-                  li.reviews__item
-                    .reviews__author
-                      .reviews__avatar
-                        img(src="../images/content/" + avatarArr[i], class="reviews__pic", alt="")                        
-                      .reviews__author-info
-                        .reviews__author-name= nameArr[i]
-                        .reviews__author-profession= professionArr[i]
-                        - i++
-                    .form-line
-                    .reviews__content
-                      p.reviews__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                      .reviews__controls
-                        button(type="button").btn-edit.btn-edit--reviews Править
-                        button(type="button").btn-discard.btn-discard--reviews Удалить
+              - var nameArr = ["Владимир Сабанцев", "Ковальчук Дмитрий", "Петров Сергей", "Степан Реактивный", "Федор Сумкин"]
+              - var avatarArr = ["kovalchuk.png", "sabancev.png", "kovalchuk.png", "sabancev.png", "sabancev.png"]
+              - var professionArr = ["Преподаватель", "Основатель LoftSchool", "Водитель автобуса", "Работник Почты России", "Шахтер"]
+              - var i = 0
+              each item in slideArr                             
+                li.reviews__item
+                  .reviews__author
+                    .reviews__avatar
+                      img(src="../images/content/" + avatarArr[i], class="reviews__pic", alt="")                        
+                    .reviews__author-info
+                      .reviews__author-name= nameArr[i]
+                      .reviews__author-profession= professionArr[i]
+                      - i++
+                  .form-line
+                  .reviews__content
+                    p.reviews__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                    .reviews__controls
+                      button(type="button" title="Редактировать").btn-edit.btn-edit--reviews Править
+                      button(type="button" title="Удалить").btn-discard.btn-discard--reviews Удалить
 
 
                         
@@ -253,6 +255,8 @@ h5 {
 }
 
 body {
+  padding: 0;
+  margin: 0;
   width: 100%;
   height: 100%;
 }
@@ -296,20 +300,34 @@ button {
 }
 
 .btn-main {
+  text-transform: uppercase;
   font-size: 16px;
   font-weight: bold;
   color: #fff;
   border-radius: 25px;
   padding: 20px 50px;
   background: linear-gradient(to right, #006aed, #3f35cb);
+
+  @media screen and (max-width: 440px) {
+    font-size: 14px;
+    padding: 10px 25px;
+  }
 }
 
-.btn-addnew {
+.btn-addnew__plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   background: linear-gradient(to right, #006aed, #3f35cb);
   border-radius: 50%;
   color: #fff;
+
+  &--group {
+    width: 21px;
+    height: 21px;
+  }
 }
 
 .btn-apply {
@@ -385,6 +403,7 @@ button {
 }
 
 .header__exit-link {
+  background-color: transparent;
   opacity: 0.7;
   font-size: 16px;
   color: #fff;
@@ -408,6 +427,7 @@ button {
 }
 
 .nav__link {
+  background-color: transparent;
   display: block;
   width: 100%;
   height: 100%;
@@ -461,8 +481,9 @@ button {
 }
 
 .form__btn-addnew--group {
-  width: 21px;
-  height: 21px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
 }
 
 .about__addgroup-text {
@@ -713,7 +734,8 @@ button {
 }
 
 .works-form__tag-item {
-  padding: 2px 20px;
+  display: flex;
+  padding: 3px 13px;
   border-radius: 15px;
   background-color: #f4f4f4;
   margin-left: 10px;
@@ -728,25 +750,16 @@ button {
   font-size: 13px;
   font-weight: 600;
   color: rgba(40, 51, 64, 0.7);
-  &::after {
-    content: "+";
-    vertical-align: middle;
-    display: inline-flex;
-    margin-left: 10px;
-    font-size: 25px;
-    font-weight: 600;
-    color: rgba(40, 51, 64, 0.7);
-    transform: rotate(45deg);
-    cursor: pointer;
-
-    @media screen and (max-width: 420px) {
-      margin-left: 5px;
-    }
-  }
 
   @media screen and (max-width: 420px) {
     width: 100%;
   }
+}
+
+.works-form__btn-delete {
+  margin-left: 5px;
+  padding: 0;
+  background-color: transparent;
 }
 
 .works-form__controls {
@@ -755,6 +768,7 @@ button {
 }
 
 .btn-main--cancel {
+  text-transform: none;
   background: transparent;
   color: #383bcf;
 }
@@ -825,7 +839,6 @@ button {
 .works__addnew-desc {
   margin-top: 30px;
   text-align: center;
-  width: 30%;
   font-size: 18px;
   font-weight: bold;
   font-style: normal;
@@ -1057,7 +1070,6 @@ button {
 .reviews__addnew-desc {
   margin-top: 30px;
   text-align: center;
-  width: 30%;
   font-size: 18px;
   font-weight: bold;
   font-style: normal;

@@ -1,31 +1,31 @@
 const links = document.querySelectorAll("[href^='#']");
-const V = 0.7; // scrolling speed
+const V = 0.2; // scrolling speed
 
-  for (const iter of links) {
-    iter.addEventListener("click", e => {
-      e.preventDefault();
+for (const iter of links) {
+  iter.addEventListener("click", e => {
+    e.preventDefault();
 
-      const anchor = document.querySelector(iter.getAttribute("href"));
-      const coordAnchor = anchor.getBoundingClientRect().top;
-      const windowY = window.pageYOffset;
+    const anchor = document.querySelector(iter.getAttribute("href"));
+    const coordAnchor = anchor.getBoundingClientRect().top;
+    const windowY = window.pageYOffset;
 
-      let start = null;
+    let start = null;
 
-      requestAnimationFrame(step);
+    requestAnimationFrame(step);
 
-      function step(time) {
-        if (start === null) start = time;
-        let progress = time - start;
+    function step(time) {
+      if (start === null) start = time;
+      let progress = time - start;
 
-        let coordY =
-          coordAnchor < 0
-            ? Math.max(windowY - progress / V, windowY + coordAnchor)
-            : Math.min(windowY + progress / V, windowY + coordAnchor);
+      let coordY =
+        coordAnchor < 0
+          ? Math.max(windowY - progress / V, windowY + coordAnchor)
+          : Math.min(windowY + progress / V, windowY + coordAnchor);
 
-        window.scrollTo(0, coordY);
-        if (coordY != windowY + coordAnchor) {
-          requestAnimationFrame(step);
-        }
+      window.scrollTo(0, coordY);
+      if (coordY != windowY + coordAnchor) {
+        requestAnimationFrame(step);
       }
-    });
-  }
+    }
+  });
+}

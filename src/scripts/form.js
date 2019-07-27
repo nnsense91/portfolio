@@ -48,11 +48,15 @@ class Validate {
             let formData = new FormData();
 
             formData.append("name", name);
+            formData.append("phone", "89222302230");
             formData.append("comment", comment);
             formData.append("to", mail);
 
-            fetch(`http://webdev-api.loftschool.com/sendemail`, {
+            fetch(`https://webdev-api.loftschool.com/sendmail`, {
                 method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
                 body: formData
             }).then((response) => {
                 return response.json();
@@ -98,6 +102,7 @@ class Validate {
         } else {
             this.isFieldCorrect[inputName] = false;
             this.showErrorMessage(event.target, this.emptyErrorMessage);
+            console.log(this.emptyErrorMessage);
         }
     }
 
@@ -107,7 +112,7 @@ class Validate {
 
     showErrorMessage(element, message) {
         const parentFormBlock = element.closest(`.${this.block}`);
-        const messageEl = parentFormBlock.querySelector(`.${this.errorBlock}`)
+        const messageEl = parentFormBlock.siblings(`.${this.errorBlock}`)
 
         messageEl.innerText = "";
         messageEl.classList.add(this.errorClass);
@@ -117,5 +122,3 @@ class Validate {
 }
 
 export default Validate;
-
-//1.36.0
