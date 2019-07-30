@@ -1,3 +1,5 @@
+import { log } from "util";
+
 class Validate {
     constructor() {
         this.form = "j-form";
@@ -52,27 +54,29 @@ class Validate {
             formData.append("comment", comment);
             formData.append("to", mail);
 
-            fetch(`https://webdev-api.loftschool.com/sendmail`, {
-                method: "POST",
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                },
-                body: formData
-            }).then((response) => {
-                return response.json();
-            }).then((info) => {
-                return info.message;
-            }).then((message) => {
-                // popup
-                this.$form.reset();
-            }).catch(() => {
-                // popup
-            })
+            console.log(isFormFullFilled);
+            if (isFormFullFilled) {
+                fetch(`https://webdev-api.loftschool.com/sendmail`, {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: formData
+                }).then((response) => {
+                    return response.json();
+                }).then((info) => {
+                    return info.message;
+                }).then((message) => {
+                    this.showModal(message);
+                    this.$form.reset();
+                }).catch(() => {
+                    this.showModal("Ошибка. Что-то пошло не так..");
+                })
+            }
         });
 
         this.$inputName.addEventListener("change", (event) => {
             this.inputChangeHandler(event, "name");
-
         });
 
         this.$inputEmail.addEventListener("change", (event) => {
@@ -83,9 +87,7 @@ class Validate {
             if (isValidEmail && regEmail.test(this.$inputEmail.value)) {
                 this.inputChangeHandler(event, "email");
             } else if (isValidEmail === false || regEmail.test(this.$inputEmail.value) === false) {
-                //вывести ошибку о некорректном адресе
-                console.log(this.incorrectMessage);
-
+                this.showErrorMessage(event.target, this.incorrectMessage);
             }
         });
 
@@ -97,28 +99,61 @@ class Validate {
     inputChangeHandler(event, inputName) {
         if (event.target.value.length) {
             this.isFieldCorrect[inputName] = true;
-            // убираем сообщение с ошибкой(пустое поле)
-            console.log("Удаляем сообщение об ошибке");
+            this.removeErrorMessage(event.target);
         } else {
             this.isFieldCorrect[inputName] = false;
             this.showErrorMessage(event.target, this.emptyErrorMessage);
-            console.log(this.emptyErrorMessage);
         }
     }
 
     checkForm() {
+        let result = true;
 
+        if (!this.isFieldCorrect.name) {
+            this.showErrorMessage(this.$inputName, this.emptyErrorMessage);
+        }
+
+        if (!this.$inputEmail.value.length) {
+            this.showErrorMessage(this.$inputEmail, this.emptyErrorMessage);
+        }
+
+        if (!this.isFieldCorrect.text) {
+            this.showErrorMessage(this.$inputTextArea, this.emptyErrorMessage);
+        }
+
+        for (const field in this.isFieldCorrect) {
+            if ({}.hasOwnProperty.call(this.isFieldCorrect, field) && this.isFieldCorrect[field] === false) {
+                result = false;
+                break;
+            }
+        }
+
+        return result;
     }
 
     showErrorMessage(element, message) {
         const parentFormBlock = element.closest(`.${this.block}`);
-        const messageEl = parentFormBlock.siblings(`.${this.errorBlock}`)
+        const messageEl = parentFormBlock.querySelector(`.${this.errorBlock}`)
 
         messageEl.innerText = "";
         messageEl.classList.add(this.errorClass);
-        message.innerText = message;
+        messageEl.innerText = message;
     }
 
+    removeErrorMessage(element) {
+        const el = element.closest(`.${this.block}`).querySelector(`.${this.errorBlock}`);
+        el.classList.remove(this.errorClass);
+    }
+
+    showModal(message) {
+        const container = document.querySelector(".j-popup-modal");
+        const content = document.querySelector(".popup-modal__content");
+        const closeBtn = document.querySelector(".popup-modal__close-btn");
+
+        container.classList.remove("popup-modal--hidden");
+        document.body.classList.add("hidden");
+        content.innerHTML = message;
+    }
 }
 
 export default Validate;

@@ -10,6 +10,7 @@ import "./scripts/reviews-slider";
 import "./scripts/focus";
 import "./scripts/anchor-scroll";
 import "./scripts/popup";
+import "./scripts/close-modal";
 
 import Validate from "./scripts/form";
 

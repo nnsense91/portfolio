@@ -1,0 +1,35 @@
+.popup-modal {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.popup-modal__wrap {
+    padding: 40px;
+    background: #fff;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-modal__close-btn {
+    color: #fff;
+    margin-top: 1.25rem;
+    padding: .625rem;
+    min-width: 6.25rem;    
+    background-image: linear-gradient(90deg,#ea7400,#ef8900);
+}
+
+.popup-modal--hidden {
+    display: none;
+}
