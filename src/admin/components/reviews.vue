@@ -50,7 +50,6 @@
 </template>
 
 <style lang="postcss" scoped>
-
 .btn-main {
   text-transform: uppercase;
   font-size: 16px;
@@ -103,6 +102,7 @@
 .reviews-form__content {
   padding: 50px 30px;
   display: flex;
+  justify-content: space-between;
 
   @media screen and (max-width: 440px) {
     padding: 0;
@@ -123,8 +123,8 @@
 }
 
 .reviews-form__avatar-block {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background: svg-load("user.svg", fill=#fff, width=100%, height=100%) 50% 50% /
     center no-repeat;
   background-color: #dee4ed;
@@ -147,7 +147,7 @@
 
 .reviews-form__main-content {
   margin-left: 1%;
-  width: 74%;
+  width: 70%;
 
   @media screen and (max-width: 440px) {
     width: 100%;

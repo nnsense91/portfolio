@@ -8,18 +8,18 @@
           h1.header__author-name Иван Егоров
           .header__title Панель администрирования
         .header__exit
-          button(type="button" href="#" title="Выход").header__exit-link Выйти
+          button(type="button" title="Выход").header__exit-link Выйти
     section.navigation
       .container.navigation__container
         nav.nav
           ul.nav__list
-            - var pages= ["Обо мне", "Работы", "Отзывы"]
-            each item in pages
-              li.nav__item.nav__item--active
-                button(type="button" href="#" title="меню").nav__link= item
-    about
-    works
-    reviews
+            li(ref="navItem").nav__item
+              router-link(tag="button" to="/" title="меню").nav__link Обо мне
+            li(ref="navItem").nav__item
+              router-link(tag="button" to="works" title="меню").nav__link Работы
+            li(ref="navItem").nav__item
+              router-link(tag="button" to="reviews" title="меню").nav__link Отзывы
+    router-view
 </template>
 
 <script>
@@ -241,10 +241,8 @@ button {
   text-decoration: none;
 }
 
-.nav__item--active {
+.router-link-exact-active {
   border-bottom: 2px solid #383bcf;
-  & > .nav__link {
-    color: #383bcf;
-  }
+  outline: none;
 }
 </style>

@@ -1,5 +1,4 @@
-<template lang="pug">
-    
+<template lang="pug">    
     section.works
       .container
         h2.about__title.title Блок "Работы"
@@ -54,7 +53,6 @@
 </template>
 
 <style lang="postcss" scoped>
-
 .btn-main {
   text-transform: uppercase;
   font-size: 16px;
