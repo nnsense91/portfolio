@@ -4,8 +4,14 @@ export default {
         skills: []
     },
     actions: {
-        addSkill(store, newSkill) {
-            this.$axios.post("/skills", newSkill);
+        async addSkill(store, newSkill) {
+            try {
+                const response =  await this.$axios.post("/skills", newSkill);
+            } catch (error){
+                throw new Error(
+                    error.response.data.error || error.response.data.message
+                )
+            }
         }
     }
 };

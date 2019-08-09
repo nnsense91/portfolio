@@ -38,8 +38,13 @@ export default {
   },
   methods: {
     ...mapActions("skills", ["addSkill"]),
-    addNewSkill() {
-      this.addSkill(this.skill);
+    async addNewSkill() {
+      try {
+        await this.addSkill(this.skill);
+        alert ("Скилл успешно добавлен")
+      } catch (error) {
+        alert(error.message)
+      }
     }
   }
 };
