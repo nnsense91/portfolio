@@ -1,22 +1,51 @@
 <template lang="pug">
-ul.skills__group-list
-    li.skills-item
-        form.form.skills-form
-            .skills-form__groupname-block
-                input(type="text" placeholder="Название новой группы").skills-form__groupname
-                .skills-form__groupname-control
-                    button(type="button" title="Принять").btn-apply
-                    button(type="button" title="Отменить").btn-discard
-            .form-line
-            .skills-form__content
-                .skills-form__skills
-                    ul.skills-form__skills-list
-                        skillsItem
-            .skills-form__new-skillblock                
-                input(type="text" v-model="skill.title" placeholder="Новый навык").skills-form__new-skillname
-                input(type="text" v-model="skill.percent").skills-form__new-skillpercent
-                button(type="button" title="Добавить новый навык" @click="addNewSkill").btn-addnew__plus.skills-form__btn-addnew--skill +
-        pre {{skill}}
+  form.form.skills-form
+    .skills-form__groupname-block(
+      v-if="editCategoryModeOn === false"
+    )
+      input(
+        type="text"
+        :value="this.category.category"
+        readonly
+        ).skills-form__groupname
+      .skills-form__groupname-control
+        button(
+          type="button"
+          title="Редактировать"
+          @click="editCategoryModeOn = true"
+          ).btn-edit
+        button(
+          type="button"
+          title="Удалить"
+          @click="removeThisCategory"
+          ).btn-delete
+    .skills-form__groupname-block(
+      v-else
+    )
+      input(
+        type="text"
+        v-model="editedCategory.title"
+        ).skills-form__groupname
+      .skills-form__groupname-control
+        button(
+          type="button"
+          title="Редактировать"
+          @click="editThisCategory"
+          ).btn-apply
+        button(
+          type="button"
+          title="Удалить"
+          @click="editCategoryModeOn = false"
+          ).btn-discard
+    .form-line
+    .skills-form__content
+      .skills-form__skills
+        ul.skills-form__skills-list
+          skillsItem
+    .skills-form__new-skillblock                
+      input(type="text" v-model="skill.title" placeholder="Новый навык").skills-form__new-skillname
+      input(type="text" v-model="skill.percent").skills-form__new-skillpercent
+      button(type="button" title="Добавить новый навык" @click="addNewSkill").btn-addnew__plus.skills-form__btn-addnew--skill +
 </template>
 
 <script>
@@ -27,27 +56,53 @@ export default {
   components: {
     skillsItem
   },
+  props: {
+    skills: Array,
+    categories: Array,
+    category: Object
+  },
   data() {
     return {
       skill: {
         title: "",
         percent: "",
-        category: "2"
-      }
+        category: this.category.id
+      },
+      editCategoryModeOn: false,
+      editedCategory: { ...this.category }
     };
-  },
-  props: {
-    skills: Array,
-    category: Object
   },
   methods: {
     ...mapActions("skills", ["addSkill"]),
+    ...mapActions("categories", [
+      "removeCategory",
+      "editCategory",
+      "getCategories"
+    ]),
     async addNewSkill() {
       try {
         await this.addSkill(this.skill);
         alert("Скилл успешно добавлен");
       } catch (error) {
         alert(error.message);
+      }
+    },
+    async removeThisCategory() {
+      try {
+        await this.removeCategory(this.category.id);
+        // console.log(this.category.id);
+      } catch (error) {
+        //error
+      }
+    },
+    async editThisCategory() {
+      try {
+        await this.editCategory(this.editedCategory);
+        await this.getCategories();
+        this.editedCategory.title = "";
+        this.editCategoryModeOn = false;
+      } catch (error) {
+        //error
       }
     }
   }
@@ -62,30 +117,17 @@ export default {
     100% / contain no-repeat;
 }
 
+.btn-edit {
+  width: 14px;
+  height: 14px;
+  background: svg-load("pencil.svg", fill=#a0a5b1, width=100%, height=100%) 0
+    100% / contain no-repeat;
+}
+
 .skills__group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.skills__group-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -2%;
-}
-
-.skills-item {
-  margin-top: 20px;
-  margin-left: 2%;
-  padding: 2%;
-  width: 48%;
-  height: 387px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
-
-  @media screen and (max-width: 420px) {
-    width: 100%;
-  }
 }
 
 .skills-form {

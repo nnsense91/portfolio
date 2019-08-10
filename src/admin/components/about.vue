@@ -4,36 +4,58 @@
       .about__title-row
         h2.about__title.title Блок "Обо мне"
         .about__addgroup
-          button(type="button" title="Добавить новую группу").btn-addnew.form__btn-addnew--group
+          button(
+            type="button"
+            title="Добавить новую группу"
+            @click="isEditCardOn = true"
+            ).btn-addnew.form__btn-addnew--group
             .btn-addnew__plus.btn-addnew__plus--group +
             span.about__addgroup-text Добавить&nbspгруппу
       .about__content
-        .about__skills   
-          skills
-          pre {{skills}}
+        .about__skills
+          ul.skills__group-list
+            li(v-if="isEditCardOn === true").skills-item
+              addNewGroup(
+                :categories="categories"
+                :isEditCardOn="isEditCardOn"
+              )
+            li.skills-item(
+              v-for="category in categories"
+              )
+              skills(
+                :category="category"
+              )
+          
 </template>
 
 <script>
 import skills from "./skills";
+import addNewGroup from "./add-group-skills";
 import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
+    addNewGroup,
     skills
   },
-  computed: {
-    ...mapState("skills", {
-      skills: state => state.skills
-    })
+  data() {
+    return {
+      isEditCardOn: false
+    };
   },
   methods: {
-    ...mapActions("skills", ["fetchSkills"])
+    ...mapActions("categories", ["getCategories"])
+  },
+  computed: {
+    ...mapState("categories", {
+      categories: state => state.categories
+    })
   },
   async created() {
     try {
-      this.fetchSkills();
+      await this.getCategories();
     } catch (error) {
-      //handler error
+      //error
     }
   }
 };
@@ -118,5 +140,25 @@ export default {
 
 .about__content {
   margin-top: 60px;
+}
+
+.skills__group-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -2%;
+}
+
+.skills-item {
+  margin-top: 20px;
+  margin-left: 2%;
+  padding: 2%;
+  width: 48%;
+  height: 387px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(122, 122, 122, 0.1);
+
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  }
 }
 </style>
