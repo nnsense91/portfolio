@@ -8,16 +8,33 @@
             .btn-addnew__plus.btn-addnew__plus--group +
             span.about__addgroup-text Добавить&nbspгруппу
       .about__content
-        .about__skills          
+        .about__skills   
           skills
+          pre {{skills}}
 </template>
 
 <script>
 import skills from "./skills";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
     skills
+  },
+  computed: {
+    ...mapState("skills", {
+      skills: state => state.skills
+    })
+  },
+  methods: {
+    ...mapActions("skills", ["fetchSkills"])
+  },
+  async created() {
+    try {
+      this.fetchSkills();
+    } catch (error) {
+      //handler error
+    }
   }
 };
 </script>

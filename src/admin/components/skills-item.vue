@@ -11,6 +11,14 @@
                         button(type="button" title="Удалить").btn-delete
 </template>
 
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  methods: {}
+};
+</script>
+
 <style lang="postcss" scoped>
 .btn-edit {
   width: 14px;

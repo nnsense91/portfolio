@@ -32,18 +32,22 @@ export default {
       skill: {
         title: "",
         percent: "",
-        category: "1"
+        category: "2"
       }
     };
+  },
+  props: {
+    skills: Array,
+    category: Object
   },
   methods: {
     ...mapActions("skills", ["addSkill"]),
     async addNewSkill() {
       try {
         await this.addSkill(this.skill);
-        alert ("Скилл успешно добавлен")
+        alert("Скилл успешно добавлен");
       } catch (error) {
-        alert(error.message)
+        alert(error.message);
       }
     }
   }
