@@ -4,12 +4,12 @@
       .container.header__container
         .header__content
           .header__avatar
-            img(src="../images/content/avatar.jpg").header__avatar-pic
+            img(src="../images/content/avatar.jpg" alt="Мое фото").header__avatar-pic
           h1.header__author-name Иван Егоров
           .header__title Панель администрирования
         .header__exit
           button(type="button" title="Выход").header__exit-link Выйти
-    section.navigation
+    .navigation
       .container.navigation__container
         nav.nav
           ul.nav__list
