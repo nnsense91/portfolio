@@ -1,3 +1,25 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@nnsense91 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+ 
+1
+0 0 Obzhigalov/advanced
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Security  Insights
+advanced/webpack.config.js
+@Obzhigalov Obzhigalov BuildAdmin
+dc6cae0 14 days ago
+186 lines (172 sloc)  4.05 KB
+    
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -9,7 +31,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = "";
+  const publicPath = './';
 
   const pcss = {
     test: /\.(p|post|)css$/,
@@ -30,7 +52,6 @@ module.exports = (env, argv) => {
     loader: "babel-loader",
     exclude: /node_modules/,
     options: {
-      presets: ["@babel/preset-env"],
       plugins: ["@babel/plugin-syntax-dynamic-import"]
     }
   };
@@ -84,16 +105,6 @@ module.exports = (env, argv) => {
   };
 
   const config = {
-    entry: {
-      main: ["@babel/polyfill", "./src/main.js"],
-      admin: ["@babel/polyfill", "./src/admin/main.js"]
-    },
-    output: {
-      path: path.resolve(__dirname, "./dist"),
-      filename: "[name].[hash].build.js",
-      publicPath: isProductionBuild ? publicPath : "",
-      chunkFilename: "[chunkhash].js"
-    },
     module: {
       rules: [pcss, vue, js, files, svg, pug]
     },
@@ -153,6 +164,57 @@ module.exports = (env, argv) => {
       new OptimizeCSSAssetsPlugin({})
     ];
   }
+  
+  const mainConfig = {
+    ...config,
+    entry: {
+      main: "./src/main.js",
+    },
+    output: {
+      path: path.resolve(__dirname, "./dist"),
+      filename: "[name].[hash].build.js",
+      publicPath: isProductionBuild ? publicPath : "",
+      chunkFilename: "[chunkhash].js"
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "src/index.pug"
+      }),
+      ...config.plugins
+    ]
+  };
 
-  return config;
+  const adminConfig = {
+    ...config,
+    name: "admin-config",
+    entry: {
+      admin: "./src/admin/main.js"
+    },
+    output: {
+      path: path.resolve(__dirname, "./dist/admin"),
+      filename: "[name].[hash].build.js",
+      publicPath: isProductionBuild ? publicPath : "",
+      chunkFilename: "[chunkhash].js"
+    },
+    plugins: [
+      ...config.plugins,
+      new HtmlWebpackPlugin({
+        template: "src/admin/index.pug"
+      })
+    ]
+  };
+  
+   return [mainConfig, adminConfig];
 };
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
