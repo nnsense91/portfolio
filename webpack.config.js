@@ -154,44 +154,5 @@ module.exports = (env, argv) => {
     ];
   }
 
-  const mainConfig = {
-    ...config,
-    entry: {
-      main: "./src/main.js",
-    },
-    output: {
-      path: path.resolve(__dirname, "./dist"),
-      filename: "[name].[hash].build.js",
-      publicPath: isProductionBuild ? publicPath : "",
-      chunkFilename: "[chunkhash].js"
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "src/index.pug"
-      }),
-      ...config.plugins
-    ]
-  };
-
-  const adminConfig = {
-    ...config,
-    name: "admin-config",
-    entry: {
-      admin: "./src/admin/main.js"
-    },
-    output: {
-      path: path.resolve(__dirname, "./dist/admin"),
-      filename: "[name].[hash].build.js",
-      publicPath: isProductionBuild ? publicPath : "",
-      chunkFilename: "[chunkhash].js"
-    },
-    plugins: [
-      ...config.plugins,
-      new HtmlWebpackPlugin({
-        template: "src/admin/index.pug"
-      })
-    ]
-  };
-  
-   return [mainConfig, adminConfig];
+  return config;
 };
