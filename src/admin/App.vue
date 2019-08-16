@@ -242,7 +242,7 @@ input {
 }
 
 button {
-  outline: none;
+  
 }
 
 h1,
