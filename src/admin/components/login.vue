@@ -36,7 +36,7 @@ export default {
         this.$router.push("/");
       } catch (error) {
         console.log(error.response);
-        //error handling;
+        //ошибка логин
       }
     }
   }

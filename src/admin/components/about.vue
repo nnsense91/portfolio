@@ -13,7 +13,7 @@
             span.about__addgroup-text Добавить&nbspгруппу
       .about__content
         .about__skills
-          ul.skills__group-list
+          ul.skills__group-list            
             li(v-if="isEditCardOn === true").skills-item
               addNewGroup(
                 :categories="categories"
@@ -24,6 +24,7 @@
               )
               skills(
                 :category="category"
+                :skills="filterSkillsByCategoryId(category.id)"
               )
           
 </template>
@@ -44,17 +45,30 @@ export default {
     };
   },
   methods: {
-    ...mapActions("categories", ["getCategories"])
+    ...mapActions("categories", ["getCategories"]),
+    ...mapActions("skills", ["fetchSkills"]),
+    filterSkillsByCategoryId(categoryId) {
+      return this.skills.filter(skill => skill.category === categoryId);
+    }
   },
   computed: {
     ...mapState("categories", {
       categories: state => state.categories
+    }),
+    ...mapState("skills", {
+      skills: state => state.skills
     })
   },
   async created() {
     try {
       await this.getCategories();
     } catch (error) {
+      //error
+    }
+
+    try {
+      await this.fetchSkills();
+    } catch {
       //error
     }
   }

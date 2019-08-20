@@ -26,27 +26,27 @@ export default {
         commit('ADD_CATEGORY', category)
       } catch (error) {
         throw new Error(
-          error.responce.data.error || error.responce.data.message
+          error.response.data.error || error.response.data.message
         )
       }
     },
     async removeCategory({ commit }, categoryId) {
       try {
-        const responce = await this.$axios.delete(`/categories/${categoryId}`);
+        const response = await this.$axios.delete(`/categories/${categoryId}`);
         commit('DELETE_CATEGORY', categoryId);
       } catch (error) {
         throw new Error(
-          error.responce.data.error || error.responce.data.message
+          error.response.data.error || error.response.data.message
         )
       }
     },
     async editCategory({ commit }, category) {
       try {
-        const responce = await this.$axios.post(`/categories/${category.id}`, category);
+        const response = await this.$axios.post(`/categories/${category.id}`, category);
         commit('EDIT_CATEGORY', category);
       } catch (error) {
         throw new Error(
-          error.responce.data.error || error.responce.data.message
+          error.response.data.error || error.response.data.message
         )
       }
     },
@@ -56,7 +56,7 @@ export default {
         commit('SET_CATEGORIES', categories);
       } catch (error) {
         throw new Error(
-          error.responce.data.error || error.responce.data.message
+          error.response.data.error || error.response.data.message
         )
       }
     }

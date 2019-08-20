@@ -41,11 +41,15 @@
     .skills-form__content
       .skills-form__skills
         ul.skills-form__skills-list
-          skillsItem
-    .skills-form__new-skillblock                
+          skillsItem(
+            v-for="skill in skills"
+            :key="skill.id"
+            :skill="skill"
+          )
+    .skills-form__new-skillblock(:class="{blocked: formIsBlocked}")
       input(type="text" v-model="skill.title" placeholder="Новый навык").skills-form__new-skillname
       input(type="text" v-model="skill.percent").skills-form__new-skillpercent
-      button(type="button" title="Добавить новый навык" @click="addNewSkill").btn-addnew__plus.skills-form__btn-addnew--skill +
+      button(type="button" title="Добавить новый навык" @click="addNewSkill").btn-addnew__plus.skills-form__btn-addnew--skill +      
 </template>
 
 <script>
@@ -68,6 +72,7 @@ export default {
         percent: "",
         category: this.category.id
       },
+      formIsBlocked: false,
       editCategoryModeOn: false,
       editedCategory: { ...this.category }
     };
@@ -80,11 +85,18 @@ export default {
       "getCategories"
     ]),
     async addNewSkill() {
+      this.formIsBlocked = "true"
       try {
         await this.addSkill(this.skill);
-        alert("Скилл успешно добавлен");
-      } catch (error) {
-        alert(error.message);
+        this.skill = {
+          title: "",
+          percent: ""
+        }
+      } catch(error) {
+        //ошибка пользователю
+        alert("не удалось добавить скилл.", error.message)
+      } finally {
+        this.formIsBlocked = "false"
       }
     },
     async removeThisCategory() {
