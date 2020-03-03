@@ -7,7 +7,7 @@
           button(
             type="button"
             title="Добавить новую группу"
-            @click="isEditCardOn = true"
+            @click="isEditCardOn = !isEditCardOn"
             ).btn-addnew.form__btn-addnew--group
             .btn-addnew__plus.btn-addnew__plus--group +
             span.about__addgroup-text Добавить&nbspгруппу
