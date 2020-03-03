@@ -15,6 +15,7 @@
           button(
             type="button"
             title="Отменить"
+            @click="isEditCardOn = false"
             ).btn-discard
     .form-line
 </template>

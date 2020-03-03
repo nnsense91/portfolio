@@ -9,6 +9,15 @@ export default {
         },
         ADD_SKILL(state, skill) {
             state.skills.push(skill);
+        },
+        REMOVE_SKILL(state, removedSkillId) {
+            state.skills = state.skills.filter(skill => skill.id !== removedSkillId);
+            //кладем в skills только скиллы с id не равные удаленному
+        },
+        EDIT_SKILL (state, editedSkill) {
+            state.skills = state.skills.map(skill => {
+                return skill.id === editedSkill.id ? editedSkill : skill;
+            });
         }
     },
     actions: {
@@ -29,6 +38,22 @@ export default {
                 store.commit("SET_SKILLS", response.data);
             } catch (error) {
                 //error
+            }
+        },
+        async removeSkill(store, skillId) {
+            try {
+                const response = await this.$axios.delete(`/skills/${skillId}`)
+                store.commit("REMOVE_SKILL", skillId)
+            } catch {
+                //error
+            }
+        },
+        async editSkill({commit}, skill) {
+            try {
+                const response = await this.$axios.post(`/skills/${skill.id}`, skill);
+                commit("EDIT_SKILL", skill)
+            } catch(error) {
+
             }
         }
     }

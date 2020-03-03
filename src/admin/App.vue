@@ -14,25 +14,22 @@
         nav.nav
           ul.nav__list
             li(ref="navItem").nav__item
-              router-link(tag="button" to="/" title="меню").nav__link Обо мне
+              router-link(tag="button" to="/" title="Блок 'Обо мне'").nav__link Обо мне
             li(ref="navItem").nav__item
-              router-link(tag="button" to="works" title="меню").nav__link Работы
+              router-link(tag="button" to="works" title="Блок 'Мои работы'").nav__link Работы
             li(ref="navItem").nav__item
-              router-link(tag="button" to="reviews" title="меню").nav__link Отзывы
+              router-link(tag="button" to="reviews" title="Блок 'Отзывы'").nav__link Отзывы
     router-view
 </template>
 
 <script>
-import about from "./components/about";
-import reviews from "./components/reviews";
-import works from "./components/works";
 
 export default {
   name: "app",
   components: {
-    about,
-    reviews,
-    works
+    about: () => import ("./components/about"),
+    reviews: () => import ("./components/reviews"),
+    works: () => import ("./components/works")
   }
 };
 </script>

@@ -53,12 +53,11 @@
 </template>
 
 <script>
-import skillsItem from "./skills-item";
 import { mapActions } from "vuex";
 
 export default {
   components: {
-    skillsItem
+    skillsItem: () => import ("./skills-item")
   },
   props: {
     skills: Array,

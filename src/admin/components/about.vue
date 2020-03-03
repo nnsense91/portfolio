@@ -30,14 +30,12 @@
 </template>
 
 <script>
-import skills from "./skills";
-import addNewGroup from "./add-group-skills";
 import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
-    addNewGroup,
-    skills
+    addNewGroup: () => import ("./add-group-skills"),
+    skills: () => import ("./skills")
   },
   data() {
     return {
