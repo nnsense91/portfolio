@@ -41,7 +41,7 @@
     .skills-form__content
       .skills-form__skills
         ul.skills-form__skills-list
-          skillsItem(
+          skills-Item(
             v-for="skill in skills"
             :key="skill.id"
             :skill="skill"
@@ -49,7 +49,7 @@
     .skills-form__new-skillblock(:class="{blocked: formIsBlocked}")
       input(type="text" v-model="skill.title" placeholder="Новый навык").skills-form__new-skillname
       input(type="text" v-model="skill.percent").skills-form__new-skillpercent
-      button(type="button" title="Добавить новый навык" @click="addNewSkill").btn-addnew__plus.skills-form__btn-addnew--skill +      
+      button(type="button" title="Добавить новый навык" @click="addNewSkill").btn-addnew__plus.skills-form__btn-addnew--skill +
 </template>
 
 <script>
@@ -57,11 +57,10 @@ import { mapActions } from "vuex";
 
 export default {
   components: {
-    skillsItem: () => import ("./skills-item")
+    "skills-Item": () => import ("./skills-item")
   },
   props: {
     skills: Array,
-    categories: Array,
     category: Object
   },
   data() {
@@ -75,7 +74,7 @@ export default {
       editCategoryModeOn: false,
       editedCategory: { ...this.category }
     };
-  },
+	},
   methods: {
     ...mapActions("skills", ["addSkill"]),
     ...mapActions("categories", [
@@ -89,7 +88,8 @@ export default {
         await this.addSkill(this.skill);
         this.skill = {
           title: "",
-          percent: ""
+					percent: "",
+					category: this.category.id
         }
       } catch(error) {
         //ошибка пользователю
@@ -101,7 +101,6 @@ export default {
     async removeThisCategory() {
       try {
         await this.removeCategory(this.category.id);
-        // console.log(this.category.id);
       } catch (error) {
         //error
       }
@@ -180,7 +179,7 @@ export default {
 
 .skills-form__new-skillblock {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end;	
 }
 
 .skills-form__new-skillname {
