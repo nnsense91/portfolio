@@ -46,10 +46,10 @@ export default {
                 //error
             }
         },
-        async editSkill({commit}, skill) {
+        async editSkill(store, skill) {
             try {
                 const response = await this.$axios.post(`/skills/${skill.id}`, skill);
-                commit("EDIT_SKILL", skill)
+                store.commit("EDIT_SKILL", skill)
             } catch(error) {
 
             }
