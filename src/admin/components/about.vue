@@ -7,7 +7,7 @@
           button(
             type="button"
             title="Добавить новую группу"
-            @click="isEditCardOn = true"
+            @click="isEditCardOn = !isEditCardOn"
             ).btn-addnew.form__btn-addnew--group
             .btn-addnew__plus.btn-addnew__plus--group +
             span.about__addgroup-text Добавить&nbspгруппу
@@ -22,7 +22,7 @@
             li.skills-item(
               v-for="category in categories"
               )
-              skills(
+              skills-group(
                 :category="category"
                 :skills="filterSkillsByCategoryId(category.id)"
               )
@@ -35,7 +35,7 @@ import { mapActions, mapState } from "vuex";
 export default {
   components: {
     addNewGroup: () => import ("./add-group-skills"),
-    skills: () => import ("./skills")
+    "skills-group": () => import ("./skills-group")
   },
   data() {
     return {
@@ -59,7 +59,7 @@ export default {
   },
   async created() {
     try {
-      await this.getCategories();
+			await this.getCategories();
     } catch (error) {
       //error
     }

@@ -25,7 +25,6 @@ import { mapActions, mapState } from "vuex";
 export default {
   props: {
     categories: Array,
-    category: Object,
     isEditCardOn: Boolean
   },
   data() {

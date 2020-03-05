@@ -21,7 +21,7 @@
             button(
             @click="editCurrentSkill"
             type="button"
-            title="Принять"            
+            title="Принять"
             ).btn-apply
             button(
               @click="editModeOn = false"

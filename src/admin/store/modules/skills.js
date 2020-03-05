@@ -5,7 +5,7 @@ export default {
     },
     mutations: {
         SET_SKILLS(state, skills) {
-            state.skills = skills
+            state.skills = skills;
         },
         ADD_SKILL(state, skill) {
             state.skills.push(skill);
@@ -24,17 +24,15 @@ export default {
         async addSkill(store, newSkill) {
             try {
                 const response = await this.$axios.post("/skills", newSkill)
-                store.commit("ADD_SKILL", response.data)
+								store.commit("ADD_SKILL", response.data)
             } catch(error) {
-                throw new Error (
-                    error.response.data.error || error.response.data.message
-                    )
+								console.log(error.response.data);
             }
         },
         async fetchSkills(store) {
             try {
-                const response = await this.$axios.get("/skills/170");
-                // const { data: skills } = await this.$axios("/skills/170"); - можно вытащить объект data при помощи деструктуризации и дать имя переменной, которая его содержит  skills.
+								const response = await this.$axios.get("/skills/170");
+								                
                 store.commit("SET_SKILLS", response.data);
             } catch (error) {
                 //error
@@ -48,10 +46,10 @@ export default {
                 //error
             }
         },
-        async editSkill({commit}, skill) {
+        async editSkill(store, skill) {
             try {
                 const response = await this.$axios.post(`/skills/${skill.id}`, skill);
-                commit("EDIT_SKILL", skill)
+                store.commit("EDIT_SKILL", skill)
             } catch(error) {
 
             }
