@@ -1,23 +1,23 @@
 <template lang="pug">
-  form.form.skills-form
-    .skills-form__groupname-block
-        input(
-          type="text"
-          placeholder="Название новой группы"
-          v-model="createCategory.title"
-          ).skills-form__groupname
-        .skills-form__groupname-control
-          button(
-            type="button"
-            title="Принять"
-            @click="addNewCategory"
-            ).btn-apply
-          button(
-            type="button"
-            title="Отменить"
-            @click="isEditCardOn = false"
-            ).btn-discard
-    .form-line
+form.form.skills-form
+	.skills-form__groupname-block
+			input(
+				type="text"
+				placeholder="Название новой группы"
+				v-model="createCategory.title"
+				).skills-form__groupname
+			.skills-form__groupname-control
+				button(
+					type="button"
+					title="Принять"
+					@click="addNewCategory"
+					).btn-apply
+				button(
+					type="button"
+					title="Отменить"
+					@click="discardNewCat()"
+					).btn-discard
+	.form-line
 </template>
 
 <script>
@@ -39,11 +39,15 @@ export default {
     async addNewCategory() {
       try {
         await this.addCategory(this.createCategory);
-        this.createCategory.title = "";
+				this.createCategory.title = "";
       } catch (error) {
-        //error
+				//error
       }
-    }
+				this.discardNewCat();
+		},
+		discardNewCat() {
+			this.$emit('discardAdd');
+		}
   }
 };
 </script>

@@ -57,7 +57,7 @@ import { mapActions } from "vuex";
 
 export default {
   components: {
-    "skills-Item": () => import ("./skills-item")
+    "skills-Item": () => import ("./skillsItem")
   },
   props: {
     skills: Array,

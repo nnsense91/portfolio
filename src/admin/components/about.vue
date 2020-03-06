@@ -1,32 +1,32 @@
 <template lang="pug">
-  section.about
-    .container.about__container
-      .about__title-row
-        h2.about__title.title Блок "Обо мне"
-        .about__addgroup
-          button(
-            type="button"
-            title="Добавить новую группу"
-            @click="isEditCardOn = !isEditCardOn"
-            ).btn-addnew.form__btn-addnew--group
-            .btn-addnew__plus.btn-addnew__plus--group +
-            span.about__addgroup-text Добавить&nbspгруппу
-      .about__content
-        .about__skills
-          ul.skills__group-list            
-            li(v-if="isEditCardOn === true").skills-item
-              addNewGroup(
-                :categories="categories"
-                :isEditCardOn="isEditCardOn"
-              )
-            li.skills-item(
-              v-for="category in categories"
-              )
-              skills-group(
-                :category="category"
-                :skills="filterSkillsByCategoryId(category.id)"
-              )
-          
+section.about
+	.container.about__container
+		.about__title-row
+			h2.about__title.title Блок "Обо мне"
+			.about__addgroup
+				button(
+					type="button"
+					title="Добавить новую группу"
+					@click="isEditCardOn = true"
+					).btn-addnew.form__btn-addnew--group
+					.btn-addnew__plus.btn-addnew__plus--group +
+					span.about__addgroup-text Добавить&nbspгруппу
+		.about__content
+			.about__skills
+				ul.skills__group-list            
+					li(v-if="isEditCardOn === true").skills-item
+						addNewGroup(
+							:categories="categories"
+							:isEditCardOn="isEditCardOn"
+							@discardAdd="discardCreateNewGroup"
+						)
+					li.skills-item(
+						v-for="category in categories"
+						)
+						skills-group(
+							:category="category"
+							:skills="filterSkillsByCategoryId(category.id)"
+						)          
 </template>
 
 <script>
@@ -34,8 +34,8 @@ import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
-    addNewGroup: () => import ("./add-group-skills"),
-    "skills-group": () => import ("./skills-group")
+    addNewGroup: () => import ("./about/addGroupSkills"),
+    "skills-group": () => import ("./about/skillsGroup")
   },
   data() {
     return {
@@ -47,7 +47,10 @@ export default {
     ...mapActions("skills", ["fetchSkills"]),
     filterSkillsByCategoryId(categoryId) {
       return this.skills.filter(skill => skill.category === categoryId);
-    }
+		},
+		discardCreateNewGroup() {
+			this.isEditCardOn = false;
+		}
   },
   computed: {
     ...mapState("categories", {

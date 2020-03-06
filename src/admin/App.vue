@@ -1,28 +1,33 @@
 <template lang="pug">
-  .wrap
-    header.header
-      .container.header__container
-        .header__content
-          .header__avatar
-            img(src="../images/content/avatar.jpg" alt="Мое фото").header__avatar-pic
-          h1.header__author-name Иван Егоров
-          .header__title Панель администрирования
-        .header__exit
-          button(type="button" title="Выход").header__exit-link Выйти
-    .navigation
-      .container.navigation__container
-        nav.nav
-          ul.nav__list
-            li(ref="navItem").nav__item
-              router-link(tag="button" to="/" title="Блок 'Обо мне'").nav__link Обо мне
-            li(ref="navItem").nav__item
-              router-link(tag="button" to="works" title="Блок 'Мои работы'").nav__link Работы
-            li(ref="navItem").nav__item
-              router-link(tag="button" to="reviews" title="Блок 'Отзывы'").nav__link Отзывы
-    router-view
+.wrap
+	header.header
+		.container.header__container
+			.header__content
+				.header__avatar
+					img(src="../images/content/avatar.jpg" alt="Мое фото").header__avatar-pic
+				h1.header__author-name Иван Егоров
+				.header__title Панель администрирования
+			.header__exit
+				button(
+					type="button"
+					title="Выход"
+					@click="logOut"
+				).header__exit-link Выйти
+	.navigation
+		.container.navigation__container
+			nav.nav
+				ul.nav__list
+					li(ref="navItem").nav__item
+						router-link(tag="button" to="/" title="Блок 'Обо мне'").nav__link Обо мне
+					li(ref="navItem").nav__item
+						router-link(tag="button" to="works" title="Блок 'Мои работы'").nav__link Работы
+					li(ref="navItem").nav__item
+						router-link(tag="button" to="reviews" title="Блок 'Отзывы'").nav__link Отзывы
+	router-view
 </template>
 
 <script>
+import router from './router';
 
 export default {
   name: "app",
@@ -30,7 +35,13 @@ export default {
     about: () => import ("./components/about"),
     reviews: () => import ("./components/reviews"),
     works: () => import ("./components/works")
-  }
+	},
+	methods: {
+		logOut() {
+			localStorage.clear("token");
+			router.push('/login');
+		}
+	}
 };
 </script>
 
@@ -46,6 +57,7 @@ html {
   @media screen and (max-width: 768px) {
     font-size: 14px;
   }
+	overflow-y: scroll;
 }
 
 * {
