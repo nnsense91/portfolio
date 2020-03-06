@@ -43,17 +43,17 @@ export default {
     };
   },
   methods: {
-    ...mapActions("categories", ["getCategories"]),
+    ...mapActions("skillsCategories", ["getCategories"]),
     ...mapActions("skills", ["fetchSkills"]),
     filterSkillsByCategoryId(categoryId) {
       return this.skills.filter(skill => skill.category === categoryId);
-		},
-		discardCreateNewGroup() {
-			this.isEditCardOn = false;
-		}
+	},
+	discardCreateNewGroup() {
+		this.isEditCardOn = false;
+	}
   },
   computed: {
-    ...mapState("categories", {
+    ...mapState("skillsCategories", {
       categories: state => state.categories
     }),
     ...mapState("skills", {
@@ -62,7 +62,7 @@ export default {
   },
   async created() {
     try {
-			await this.getCategories();
+		await this.getCategories();
     } catch (error) {
       //error
     }
@@ -108,7 +108,7 @@ export default {
 
 .about {
   height: 100%;
-  padding-top: 60px;
+  padding-top: 40px;
   padding-bottom: 60px;
   background-image: url("../../images/content/mountain.jpg");
   background-repeat: no-repeat;

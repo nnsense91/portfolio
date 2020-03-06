@@ -21,7 +21,7 @@ form.form.skills-form
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 export default {
   props: {
     categories: Array,
@@ -35,19 +35,19 @@ export default {
     };
   },
   methods: {
-    ...mapActions("categories", ["addCategory"]),
+    ...mapActions("skillsCategories", ["addCategory"]),
     async addNewCategory() {
-      try {
-        await this.addCategory(this.createCategory);
-				this.createCategory.title = "";
-      } catch (error) {
-				//error
-      }
-				this.discardNewCat();
-		},
-		discardNewCat() {
-			this.$emit('discardAdd');
-		}
+      	try {
+        	await this.addCategory(this.createCategory);
+			this.createCategory.title = "";
+      	} catch (error) {
+			//error
+      	}
+		this.discardNewCat();
+	},
+	discardNewCat() {
+		this.$emit('discardAdd');
+	}
   }
 };
 </script>

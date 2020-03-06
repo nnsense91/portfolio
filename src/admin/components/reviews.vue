@@ -318,7 +318,7 @@
 }
 
 .reviews__title {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: bold;
   color: #414c63;
   padding-bottom: 20px;

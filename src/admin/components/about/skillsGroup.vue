@@ -77,7 +77,7 @@ export default {
 	},
   methods: {
     ...mapActions("skills", ["addSkill"]),
-    ...mapActions("categories", [
+    ...mapActions("skillsCategories", [
       "removeCategory",
       "editCategory",
       "getCategories"

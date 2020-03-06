@@ -24,14 +24,14 @@ export default {
         async addSkill(store, newSkill) {
             try {
                 const response = await this.$axios.post("/skills", newSkill)
-								store.commit("ADD_SKILL", response.data)
+				store.commit("ADD_SKILL", response.data)
             } catch(error) {
-								console.log(error.response.data);
+				console.log(error.response.data);
             }
         },
         async fetchSkills(store) {
             try {
-								const response = await this.$axios.get("/skills/170");
+				const response = await this.$axios.get("/skills/170");
 								                
                 store.commit("SET_SKILLS", response.data);
             } catch (error) {

@@ -1,77 +1,31 @@
 <template lang="pug">
-	.works__list-wrap
-		ul.works__list
-			button(type="button" @click="openCreateWorkForm").works__item.works__item--new
-				button(type="button" title="Добавить новый проект").btn-addnew.btn-addnew--works +
-				.works__addnew-desc Добавить работу
-			worksItem(
-				v-for="work in works"
-				:key="work.key"
-				:work="work"
-			)
+	li.works__item
+		.works__pic-block
+			img(src="../../../images/content/slide1.jpg", class="works__pic", alt="")
+		.works__content
+			h3.works__title {{work.title}}
+			p.works__desc {{work.description}}
+			a(:href="work.link").works__link {{work.link}}
+			.works__controls
+				button(type="button" title="Редактировать").btn-edit.btn-edit--works Править
+				button(type="button" title="Удалить").btn-discard.btn-discard--works Удалить
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-
 export default {
-	components: {
-		worksItem: () => import ("./worksItem"),
-	},
-	methods: {		
-		...mapActions('works',['fetchWorks']),
-		openCreateWorkForm() {
-			this.$emit('openEditForm');
-		}
-	},
-	async created() {
-		try {
-			await this.fetchWorks();
-		} catch(error) {
-			//error
-		}
-	},
-	computed: {
-		...mapState('works', {
-			works: state => state.works
-		})
+	props: {
+		work: Object
 	}
 }
 </script>
 
 <style lang="postcss" scoped>
-	.btn-main {
-		text-transform: uppercase;
-		font-size: 16px;
-		font-weight: bold;
-		color: #fff;
-		border-radius: 25px;
-		padding: 20px 50px;
-		background: linear-gradient(to right, #006aed, #3f35cb);
-
-		@media screen and (max-width: 440px) {
-			font-size: 14px;
-			padding: 10px 25px;
-		}
-	}
 
 	.btn-discard {
 		width: 15px;
 		height: 12px;
 		background: svg-load("cross.svg", fill=#bf2929, width=100%, height=100%) 0
 			100% / contain no-repeat;
-	}
-
-	.works__list-wrap {
-		width: 100%;
-		padding: 30px 0;
-	}
-
-	.works__list {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		margin-left: -1%;
 	}
 
 	.works__item {
@@ -105,40 +59,6 @@ export default {
 			flex-direction: row;
 			align-items: center;
 			padding: 20px 0;
-		}
-	}
-
-	.btn-addnew--works {
-		width: 150px;
-		height: 150px;
-		background: transparent;
-		border: 1px solid #fff;
-		font-size: 72px;
-		font-weight: 300;
-		font-style: normal;
-		border-radius: 50%;
-		color: #fff;
-
-		@media screen and (max-width: 440px) {
-			width: 50px;
-			height: 50px;
-			line-height: 1;
-			font-size: 36px;
-		}
-	}
-
-	.works__addnew-desc {
-		margin-top: 30px;
-		text-align: center;
-		font-size: 18px;
-		font-weight: bold;
-		font-style: normal;
-		color: #ffffff;
-
-		@media screen and (max-width: 440px) {
-			margin-top: 0;
-			width: 50%;
-			margin-left: 20px;
 		}
 	}
 

@@ -4,30 +4,90 @@
 			h3.title.works-form__title Редактирование работы
 			.form-line
 			.works-form__content
-				.works-form__download-area
+				.works-form__download-area(:style="background")
 					.works-form__download-content
 						.works-form__download-desc Перетащите или загрузите для загрузки изображения
 						button(type="button" title="Загрузить").btn-main.works__download-btn загрузить
+						input(type="file" accept="image/jpeg" @change="addPreviewFile").works-form__download-file
 				button(type="button" title="Изменить").btn-main--cancel.download-tabletbtn Изменить превью
 				.works-form__main-content
 					label.works-form__label Название
-						input(type="text" value="Дизайн сайта для авто салона Porsche").works-form__new-title
+						input(type="text" v-model="work.title").works-form__new-title
 					label.works-form__label Ссылка
-						input(type="url" value="https://www.porsche-pulkovo.ru").works-form__new-link
+						input(type="url" v-model="work.link").works-form__new-link
 					label.works-form__label Описание
-						textarea.works-form__new-desc Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей
+						textarea(
+							v-model="work.description"
+						).works-form__new-desc
 					label.works-form__label Добавление тега
-						input(type="text" value="Jquery, Vue,js, HTML5").works-form__new-tag                  
+						input(
+							type="text"
+							v-model="work.techs"
+							@keyup="addTags"
+						).works-form__new-tag
 						ul.works-form__tag-list
-							- var tags = ["Jquery", "Vue.js", "HTML5"]
-							each item in tags
-								li.works-form__tag-item
-									.works-form__tag-name= item
-									button(type="button" title="Удалить тег").works-form__btn-delete &#215
+							li(
+								v-for="tag in tags"
+							).works-form__tag-item
+								.works-form__tag-name {{tag}}
+								button(type="button" title="Удалить тег").works-form__btn-delete &#215
 					.works-form__controls
-						button(type="button" title="Отмена").btn-main.btn-main--cancel Отмена
-						button(type="button" title="Сохранить").btn-main сохранить
+						button(@click="closeEditForm" type="button" title="Отмена").btn-main.btn-main--cancel Отмена
+						button(type="button" title="Сохранить" @click="addNewWork").btn-main сохранить
 </template>
+
+<script>
+import { mapActions} from 'vuex';
+
+export default {
+	data() {
+		return {
+			background: null,
+			url: null,
+			tags: [],
+			work: {				
+				title: "",
+				techs: "",
+				photo: "",
+				link: "",
+				description: ""
+			}
+		}
+	},
+	methods: {
+		...mapActions('works', ['addWork']),
+		closeEditForm() {
+			this.$emit('closeEditForm')
+		},
+		addPreviewFile(event) {
+			this.work.photo = event.target.files[0];
+			this.url = URL.createObjectURL(this.work.photo);
+			this.background = `background-image: url(${this.url})`;
+		},
+		async addNewWork() {
+			try {
+				var workFormData = new FormData();		
+				workFormData.append('photo', this.work.photo);
+				workFormData.append('title', this.work.title);
+				workFormData.append('techs', this.work.techs);
+				workFormData.append('link', this.work.link);
+				workFormData.append('description', this.work.description);
+				await this.addWork(workFormData);
+				this.$emit('closeEditForm')
+			} catch {
+				//error
+			}
+		},
+		addTags() {
+			const arr = this.work.techs.split(',');
+			arr.forEach(element => {
+				element.trim();
+			});
+			this.work.techs !== "" ? this.tags = arr : this.tags = [];
+		}
+	}
+}
+</script>
 
 <style lang="postcss" scoped>
 
@@ -73,16 +133,34 @@
 	}
 
 	.works-form__download-area {
+		position: relative;
 		width: 45%;
 		height: 276px;
 		border: 1px dashed #a1a1a1;
 		background-color: #dee4ed;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
 		@media screen and (max-width: 768px) {
 			width: 80%;
 		}
+	}
+
+	.works-form__download-file {
+		opacity: 0;
+		border: none;		
+		position: absolute;
+		overflow: hidden;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+		padding: 0;
 	}
 
 	.works__download-btn {
@@ -96,7 +174,7 @@
 		font-size: 18px;
 	}
 
-	.works-form__download-content {
+	.works-form__download-content {		
 		width: 60%;
 		height: 60%;
 		text-align: center;
@@ -200,5 +278,4 @@
 		background: transparent;
 		color: #383bcf;
 	}
-
 </style>
