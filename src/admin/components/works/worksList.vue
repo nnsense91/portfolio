@@ -8,6 +8,7 @@
 				v-for="work in works"
 				:key="work.key"
 				:work="work"
+				@editModeOn="editModeOn"
 			)
 </template>
 
@@ -15,27 +16,20 @@
 import { mapActions, mapState } from 'vuex';
 
 export default {
+	props: {
+		works: Array
+	},
 	components: {
 		worksItem: () => import ("./worksItem"),
 	},
-	methods: {		
-		...mapActions('works',['fetchWorks']),
+	methods: {
 		openCreateWorkForm() {
-			this.$emit('openEditForm');
+			this.$emit('openAddForm');
+		},
+		editModeOn() {
+			this.$emit("editModeOn");
 		}
-	},
-	async created() {
-		try {
-			await this.fetchWorks();
-		} catch(error) {
-			//error
-		}
-	},
-	computed: {
-		...mapState('works', {
-			works: state => state.works
-		})
-	}
+	},	
 }
 </script>
 

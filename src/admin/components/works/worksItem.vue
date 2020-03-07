@@ -1,20 +1,83 @@
 <template lang="pug">
 	li.works__item
 		.works__pic-block
-			img(src="../../../images/content/slide1.jpg", class="works__pic", alt="")
+			img(
+				:src="getAbsoluteImgPath"
+				class="works__pic"
+				alt=""
+			)
 		.works__content
 			h3.works__title {{work.title}}
 			p.works__desc {{work.description}}
 			a(:href="work.link").works__link {{work.link}}
+			ul.works-form__tag-list
+				li(
+					v-for="tag in tags"
+				).works-form__tag-item
+					.works-form__tag-name {{tag}}
 			.works__controls
-				button(type="button" title="Редактировать").btn-edit.btn-edit--works Править
-				button(type="button" title="Удалить").btn-discard.btn-discard--works Удалить
+				button(
+					type="button"
+					title="Редактировать"
+					@click="editModeOn"
+					).btn-edit.btn-edit--works Править
+				button(
+					type="button"
+					title="Удалить"
+					@click="removeCurrentWork"
+				).btn-discard.btn-discard--works Удалить
 </template>
 
 <script>
+import requests  from "../../requests.js";
+import { mapActions } from 'vuex';
+
 export default {
 	props: {
 		work: Object
+	},
+	data() {
+		return {
+			tags: []
+		}
+	},
+	methods: {
+		...mapActions('works', ['removeWork', 'setCurrentWork']),
+		async removeCurrentWork() {
+			try {
+				this.removeWork(this.work.id)
+			} catch (error) {
+				console.log(error);
+			}
+		},
+		getTags() {
+			const arr = this.work.techs.split(',');
+			arr.forEach(element => {
+				element.trim();
+			});
+			this.work.techs !== "" ? this.tags = arr : this.tags = [];
+		},
+		editModeOn() {
+			this.$emit("editModeOn");
+			this.setThisWork();
+		},
+		async setThisWork() {
+			try {
+				this.setCurrentWork(this.work)
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	},
+	computed: {
+		getAbsoluteImgPath() {
+			var photo = this.work.photo
+			const baseUrl = requests.defaults.baseURL;
+			return `${baseUrl}/${photo}`;
+		}
+	},
+	created() {
+		this.getTags();
 	}
 }
 </script>
@@ -118,5 +181,38 @@ export default {
 		font-size: 16px;
 		font-weight: 600;
 		color: #383bcf;
+	}
+
+	.works-form__tag-list {
+		margin-top: 20px;
+		display: flex;
+
+		@media screen and (max-width: 440px) {
+			margin-left: -10px;
+			justify-content: center;
+		}
+	}
+
+	.works-form__tag-item {
+		display: flex;
+		padding: 3px 13px;
+		border-radius: 15px;
+		background-color: #f4f4f4;
+		margin-left: 10px;
+
+		@media screen and (max-width: 440px) {
+			padding: 1px 10px;
+		}
+	}
+
+	.works-form__tag-name {
+		vertical-align: middle;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(40, 51, 64, 0.7);
+
+		@media screen and (max-width: 420px) {
+			width: 100%;
+		}
 	}
 </style>

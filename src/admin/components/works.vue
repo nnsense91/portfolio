@@ -1,33 +1,59 @@
-<template lang="pug">    
+<template lang="pug">
 	section.works
 		.container
 			h2.works__title.title Блок "Работы"
+			worksAddForm(
+				v-if="isAddModeOn"
+				@closeAddForm="addModeHandle"
+			)
+			worksList(
+				:works="works"
+				v-if="!isAddModeOn && !isEditModeOn"
+				@openAddForm="addModeHandle"
+				@editModeOn="editModeHandle"
+			)
 			worksEditForm(
 				v-if="isEditModeOn"
 				@closeEditForm="editModeHandle"
 			)
-			worksList(
-				v-if="!isEditModeOn"
-				@openEditForm="editModeHandle"
-			)
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
+	components: {
+		worksAddForm: () => import ("./works/worksAddNew"),
+		worksEditForm: () => import ("./works/worksEditItem"),
+		worksList: () => import ("./works/worksList"),
+	},
 	data() {
 		return {
-			isEditModeOn: false
+			isEditModeOn: false,
+			isAddModeOn: false
 		}
-	},
-	components: {
-		worksEditForm: () => import ("./works/worksEditForm"),
-		worksList: () => import ("./works/worksList")
 	},
 	methods: {
+		...mapActions('works',['fetchWorks']),
+		addModeHandle() {
+			this.isAddModeOn = !this.isAddModeOn;
+		},
 		editModeHandle() {
-			this.isEditModeOn=!this.isEditModeOn;
+			this.isEditModeOn = !this.isEditModeOn;
 		}
-	}
+	},
+	computed: {
+		...mapState('works', {
+			works: state => state.works
+		})
+	},
+	async created() {
+		try {
+			await this.fetchWorks();
+		} catch(error) {
+			//error
+		}
+	},
 }
 </script>
 

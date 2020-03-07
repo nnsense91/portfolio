@@ -1,7 +1,7 @@
 <template lang="pug">
 	.works__form-wrap
 		form.form.works-form
-			h3.title.works-form__title Редактирование работы
+			h3.title.works-form__title Добавление работы
 			.form-line
 			.works-form__content
 				.works-form__download-area(:style="background")
@@ -32,7 +32,7 @@
 								.works-form__tag-name {{tag}}
 								button(type="button" title="Удалить тег").works-form__btn-delete &#215
 					.works-form__controls
-						button(@click="closeEditForm" type="button" title="Отмена").btn-main.btn-main--cancel Отмена
+						button(@click="closeAddForm" type="button" title="Отмена").btn-main.btn-main--cancel Отмена
 						button(type="button" title="Сохранить" @click="addNewWork").btn-main сохранить
 </template>
 
@@ -56,8 +56,8 @@ export default {
 	},
 	methods: {
 		...mapActions('works', ['addWork']),
-		closeEditForm() {
-			this.$emit('closeEditForm')
+		closeAddForm() {
+			this.$emit('closeAddForm')
 		},
 		addPreviewFile(event) {
 			this.work.photo = event.target.files[0];
@@ -73,7 +73,7 @@ export default {
 				workFormData.append('link', this.work.link);
 				workFormData.append('description', this.work.description);
 				await this.addWork(workFormData);
-				this.$emit('closeEditForm')
+				this.$emit('closeAddForm')
 			} catch {
 				//error
 			}
