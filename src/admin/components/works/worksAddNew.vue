@@ -8,7 +8,7 @@
 					.works-form__download-content
 						.works-form__download-desc Перетащите или загрузите для загрузки изображения
 						button(type="button" title="Загрузить").btn-main.works__download-btn загрузить
-						input(type="file" accept="image/jpeg" @change="addPreviewFile").works-form__download-file
+							input(type="file" accept="image/jpeg" @change="addPreviewFile").works-form__download-file
 				button(type="button" title="Изменить").btn-main--cancel.download-tabletbtn Изменить превью
 				.works-form__main-content
 					label.works-form__label Название
@@ -152,6 +152,7 @@ export default {
 
 	.works-form__download-file {
 		opacity: 0;
+		font-size: 0;
 		border: none;		
 		position: absolute;
 		overflow: hidden;
