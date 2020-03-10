@@ -2,31 +2,52 @@
 	section.reviews
 		.container
 			h2.title.reviews__title Блок "Отзывы"
-			reviewAddNew(
-				v-if="isAddmodeOn"
+			reviewEditForm(
+				v-if="isEditModeOn"
+				@closeEditForm="editReviewHandle"
+			)
+			reviewAddForm(
+				v-if="isAddModeOn"
 				@cancelAddingReview="addModeHandle"
 				)
 			reviewsList(
-				v-if="!isAddmodeOn"
+				v-if="!isAddModeOn && !isEditModeOn"
 				@addNewReview="addModeHandle"
+				:reviews="reviews"
+				@editCurrentReview="editReviewHandle"
 			)
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
 	components: {
-		reviewAddNew: () => import ('./reviews/reviewAddNew'),
+		reviewAddForm: () => import ('./reviews/reviewAddNew'),
+		reviewEditForm: () => import ('./reviews/reviewEditItem'),
 		reviewsList: () => import ('./reviews/reviewsList')
 	},
 	data() {
 		return {
-			isAddmodeOn: false
+			isAddModeOn: false,
+			isEditModeOn: false
 		}
 	},
 	methods: {
+		...mapActions('reviews', ["fetchReviews"]),
 		addModeHandle() {
-			this.isAddmodeOn = !this.isAddmodeOn;
+			this.isAddModeOn = !this.isAddModeOn;
+		},
+		editReviewHandle() {
+			this.isEditModeOn = !this.isEditModeOn;
 		}
+	},
+	computed: {
+		...mapState('reviews', {
+			reviews: state => state.reviews
+		})
+	},
+	created() {
+		this.fetchReviews();
 	}
 }
 </script>

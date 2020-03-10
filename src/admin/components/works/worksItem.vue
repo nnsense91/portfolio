@@ -63,7 +63,7 @@ export default {
 		},
 		async setThisWork() {
 			try {
-				this.setCurrentWork(this.work)
+				await this.setCurrentWork(this.work)
 			} catch (error) {
 				console.log(error);
 			}
@@ -71,7 +71,7 @@ export default {
 	},
 	computed: {
 		getAbsoluteImgPath() {
-			var photo = this.work.photo
+			const photo = this.work.photo
 			const baseUrl = requests.defaults.baseURL;
 			return `${baseUrl}/${photo}`;
 		}

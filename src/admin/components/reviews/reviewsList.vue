@@ -3,10 +3,15 @@
 		.reviews__main-content
 			.reviews__list-wrap
 				ul.reviews__list
-					button.reviews__item.reviews__item--new
-						button(type="button" title="Добавить новый отзыв" @click="addNewReview").btn-addnew.btn-addnew--reviews +
+					button(type="button" @click="addNewReview").reviews__item.reviews__item--new
+						button(type="button" title="Добавить новый отзыв").btn-addnew.btn-addnew--reviews +
 						.reviews__addnew-desc Добавить отзыв
-					reviewItem
+					reviewItem(
+						v-for="review in reviews"
+						:key="review.id"
+						:review="review"
+						@editCurrentReview="editCurrentReview"
+					)
 </template>
 
 <script>
@@ -14,9 +19,15 @@ export default {
 	components: {
 		reviewItem: () => import ("./reviewItem")
 	},
+	props: {
+		reviews: Array
+	},
 	methods: {
 		addNewReview() {
 			this.$emit("addNewReview");
+		},
+		editCurrentReview() {
+			this.$emit("editCurrentReview");
 		}
 	}
 }

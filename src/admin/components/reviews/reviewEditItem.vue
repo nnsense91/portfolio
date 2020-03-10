@@ -4,20 +4,58 @@
 		.form-line
 		.reviews-form__content
 			.reviews-form__avatar-wrap
-				.reviews-form__avatar-block
+				.reviews-form__avatar-block(:style="background")
 				button(type="button" title="Добавить фото").form__addphoto-btn Добавить фото
+					input(type="file" accept="image/jpeg,image/png" @change="addPreviewFile").reviews-form__download-file
 			.reviews-form__main-content
 				.reviews-form__row
 					label.reviews-form__block-name Имя автора
-						input(type="text" value="Ковальчук Дмитрий").reviews-form__input-name
+						input(type="text" v-model="currentReview.author").reviews-form__input-name
 					label.reviews-form__block-profession Титул автора
-						input(type="text" value="Основатель LoftSchool").reviews-form__input-profession
+						input(type="text" v-model="currentReview.occ").reviews-form__input-profession
 				label.reviews-form__block-text Отзыв
-					textarea.reviews-form__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+					textarea(v-model="currentReview.text").reviews-form__text
 				.reviews-form__controls
-					button(type="button" title="Отмена").btn-main.btn-main--cancel Отмена
-					button(type="button" title="Сохранить").btn-main сохранить
+					button(type="button" title="Отмена" @click="cancelEditReview").btn-main.btn-main--cancel Отмена
+					button(type="button" title="Сохранить" @click="editCurrentReview").btn-main сохранить
 </template>
+
+<script>
+import { mapState, mapActions } from 'vuex';
+
+export default {
+	data() {
+		return {
+			background: null,
+			url: null
+		}
+	},
+	methods: {
+		...mapActions('reviews', ["editReview"]),
+		cancelEditReview() {
+			this.$emit("closeEditForm");
+		},
+		addPreviewFile(event) {
+			this.currentReview.photo = event.target.files[0];
+			this.url = URL.createObjectURL(this.currentReview.photo);
+			this.background = `background: url(${this.url}) center/cover no-repeat`;
+		},
+		async editCurrentReview() {
+			try {
+				this.editReview(this.currentReview);
+				this.$emit("closeEditForm");
+			} catch {
+				//error
+			}
+		}
+	},
+	computed: {
+		...mapState('reviews', {
+			currentReview: state => state.currentReview
+		})
+	},
+}
+</script>
 
 <style lang="postcss" scoped>
 .btn-main {
@@ -85,12 +123,27 @@
   }
 }
 
+.reviews-form__download-file {
+	opacity: 0;
+	font-size: 0;
+	border: none;		
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	padding: 0;
+}
+
 .form__addphoto-btn {
-  margin-top: 10px;
-  background: none;
-  font-size: 16px;
-  font-weight: 600;
-  color: #383bcf;
+	position: relative;
+	margin-top: 10px;
+	background: none;
+	font-size: 16px;
+	font-weight: 600;
+	color: #383bcf;
 }
 
 .reviews-form__main-content {

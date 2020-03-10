@@ -2,17 +2,59 @@
 	li.reviews__item
 		.reviews__author
 			.reviews__avatar
-				img(src="../../../images/content/sabancev.png", alt="Автор отзыва фото").reviews__pic
+				img(
+					:src="getAbsoluteImgPath"
+					alt="Автор отзыва фото"
+				).reviews__pic
 			.reviews__author-info
-				.reviews__author-name Владимир Сабанцев
-				.reviews__author-profession Преподаватель
+				.reviews__author-name {{review.author}}
+				.reviews__author-profession {{review.occ}}
 		.form-line
 		.reviews__content
-			p.reviews__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+			p.reviews__desc {{review.text}}
 			.reviews__controls
-				button(type="button" title="Редактировать").btn-edit.btn-edit--reviews Править
-				button(type="button" title="Удалить").btn-discard.btn-discard--reviews Удалить
+				button(type="button" title="Редактировать" @click="editCurrentReview").btn-edit.btn-edit--reviews Править
+				button(type="button" title="Удалить" @click="removeCurrentReview").btn-discard.btn-discard--reviews Удалить
 </template>
+
+<script>
+import requests from '../../requests';
+import { mapActions } from 'vuex';
+
+export default {
+	props: {
+		review: Object
+	},
+	computed: {
+		getAbsoluteImgPath() {
+			const photo = this.review.photo
+			const baseUrl = requests.defaults.baseURL;
+			return `${baseUrl}/${photo}`;
+		}
+	},
+	methods: {
+		...mapActions('reviews', ["removeReview", "setCurrentReview"]),
+		async removeCurrentReview() {
+			try {
+				await this.removeReview(this.review.id)
+			} catch {
+				//error
+			}
+		},
+		editCurrentReview() {
+			this.$emit("editCurrentReview");
+			this.setThisReview();
+		},
+		async setThisReview() {
+			try {
+				await this.setCurrentReview(this.review);
+			} catch {
+				//error
+			}
+		}
+	}
+}
+</script>
 
 <style lang="postcss" scoped>
 	.btn-discard {

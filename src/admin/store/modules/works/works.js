@@ -53,7 +53,7 @@ export default {
 		},
 		async editWork(store, work) {
 			
-			var data = new FormData();
+			const data = new FormData();
 
 			data.append('photo', work.photo);
 			data.append('title', work.title);

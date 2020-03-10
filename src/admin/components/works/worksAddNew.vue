@@ -66,7 +66,7 @@ export default {
 		},
 		async addNewWork() {
 			try {
-				var workFormData = new FormData();		
+				const workFormData = new FormData();		
 				workFormData.append('photo', this.work.photo);
 				workFormData.append('title', this.work.title);
 				workFormData.append('techs', this.work.techs);

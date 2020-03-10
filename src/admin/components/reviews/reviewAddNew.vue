@@ -56,6 +56,7 @@ export default {
 				reviewFormData.append('occ', this.review.occ);
 				reviewFormData.append('text', this.review.text);
 				await this.addNew(reviewFormData);
+				this.$emit("cancelAddingReview");
 			} catch {
 				//error
 			}
@@ -138,6 +139,7 @@ export default {
   font-weight: 600;
   color: #383bcf;
 }
+
 .reviews-form__download-file {
 		opacity: 0;
 		font-size: 0;
