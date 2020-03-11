@@ -1,11 +1,11 @@
 import Vue from "vue";
+import axios from 'axios';
 
 const skill = {
     template: "#skill",
     props: {
-        skillName: String,
-        skillPercent: Number
-    },
+			skill : Object
+		},
     methods: {
         drawCircle() {
 					const circle = this.$refs["circle"];
@@ -14,7 +14,7 @@ const skill = {
 					const dashArray = parseInt(
 							getComputedStyle(circle).getPropertyValue("stroke-dasharray")
 					);
-					const percent = (dashArray / 100) * (100 - this.skillPercent);
+					const percent = (dashArray / 100) * (100 - this.skill.percent);
 					let exactTop = getTop(findBlcTop)
 
 					if (
@@ -40,15 +40,15 @@ const skill = {
     },
     mounted() {
         this.drawCircle();
-
     }
 }
 
 const row = {
     template: "#skills-row",
     props: {
-        skill: Object
-    },
+			skills : Array,
+			category: Object
+		},
     components: {
         skill
     }
@@ -60,22 +60,38 @@ new Vue({
     components: {
         row
     },
-    data() {
-        return {
-            skills: []
-        }
-    },
+		data() {
+			return {
+				skills : [],
+				categories: [],
+				baseURL: "https://webdev-api.loftschool.com",
+				userID: 170
+			}
+		},
     created() {
-        const data = require("../data/skills-data.json");
-        this.skills = data;
+			// const data = require("../data/skills-data.json");
+			// this.skills = data;
+			this.getCategories();
+    	this.getSkills();
     },
     methods: {
+			async getCategories() {
+				await axios.get(`${this.baseURL}/categories/${this.userID}`)
+					.then(response => this.categories = response.data);
+				},
+				async getSkills() {
+					await axios.get(`${this.baseURL}/skills/${this.userID}`)
+						.then(response => this.skills = response.data);
+				},
+				filterSkillsByCategoryId(categoryId) {
+					return this.skills.filter(skill => skill.category === categoryId)
+				},
         findCircle() {
-            let circleBlock = this.$refs["skills-block"];
+					let circleBlock = this.$refs["skills-block"];
 
-            return {
-                findTop: circleBlock
-            };
+					return {
+							findTop: circleBlock
+					};
         }
     }
 })

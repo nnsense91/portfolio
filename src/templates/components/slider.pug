@@ -1,60 +1,60 @@
 script(type="text/x-template")#slider-container
-    .slider-wrap
-        display(
-            :works="works"
-            :currentWork="currentWork"
-            :currentIndex="currentIndex"
-            @slide="handleSlide"
-        )
-        info(
-            :currentWork="currentWork"
-        )
+	.slider-wrap
+		display(
+			:works="works"
+			:currentWork="currentWork"
+			:currentIndex="currentIndex"
+			@slide="handleSlide"
+		)
+		info(
+			:currentWork="currentWork"
+		)
 
 
 
 script(type="text/x-template")#slider-display
-    .works-slider__display(:data-slide="currentIndex + 1")
-        .works-slider__content.works-slider__pic
-            img(:src="currentWork.photo", class="works-slider__img", alt="Выбранная работа")
-        btns(
-            @slide="direction => $emit('slide', direction)"
-        )
-        thumbs(
-            :works="works"
-            :currentWork= "currentWork"
-        )
+	.works-slider__display(:data-slide="currentIndex + 1")
+		.works-slider__content.works-slider__pic
+			img(:src="currentWork.photo", class="works-slider__img", alt="Выбранная работа")
+		btns(
+			@slide="direction => $emit('slide', direction)"
+		)
+		thumbs(
+			:works="works"
+			:currentWork= "currentWork"
+		)
         
 script(type="text/x-template")#slider-thumbs
-    ul.works-slider__previews
-            li.works-slider__previews-item(
-                v-for="work in works"
-                :class="{active: work.id === currentWork.id}"
-            )
-                button(type="button").works-slider__previews-link                    
-                    img(:src="work.photo", class="works-slider__previews-img", alt="Preview slide")
+	ul.works-slider__previews
+		li.works-slider__previews-item(
+			v-for="work in works"
+			:class="{active: work.id === currentWork.id}"
+		)
+			button(type="button").works-slider__previews-link                    
+				img(:src="work.photo", class="works-slider__previews-img", alt="Preview slide")
                     
 script(type="text/x-template")#slider-btns
-    .works-slider__buttons
-        button(@click.prevent="$emit('slide', 'next')").works-slider__btn.works-slider__btn_next
-            - var icon = require(`images/icons/arrow-down.svg`);
-            svg(:class="" viewBox=icon.viewBox preserveAspectRatio="none").works__arrow-icon
-                use(xlink:href=icon.url)
-        button(@click.prevent="$emit('slide', 'prev')").works-slider__btn.works-slider__btn_prev            
-            - var icon = require(`images/icons/arrow-down.svg`);
-            svg(class="" viewBox=icon.viewBox preserveAspectRatio="none").works__arrow-icon
-                use(xlink:href=icon.url)
+	.works-slider__buttons
+		button(@click.prevent="$emit('slide', 'next')").works-slider__btn.works-slider__btn_next
+			- var icon = require(`images/icons/arrow-down.svg`);
+			svg(:class="" viewBox=icon.viewBox preserveAspectRatio="none").works__arrow-icon
+				use(xlink:href=icon.url)
+		button(@click.prevent="$emit('slide', 'prev')").works-slider__btn.works-slider__btn_prev            
+			- var icon = require(`images/icons/arrow-down.svg`);
+			svg(class="" viewBox=icon.viewBox preserveAspectRatio="none").works__arrow-icon
+				use(xlink:href=icon.url)
 
 script(type="text/x-template")#slider-info
-    .works-slider__desc
-        tags(
-            :tags="tagsArray"
-        )
-        .works-slider__title {{currentWork.title}}
-        .works-slider__text.main-text
-            p {{currentWork.desc}}
-        a(:href="currentWork.link").works-slider__link Посмотреть сайт
+	.works-slider__desc
+		tags(
+			:tags="tagsArray"
+		)
+		.works-slider__title {{currentWork.title}}
+		.works-slider__text.main-text
+			p {{currentWork.desc}}
+		a(:href="currentWork.link").works-slider__link Посмотреть сайт
 
 script(type="text/x-template")#slider-tags
-    ul.works-slider__tags        
-        li.works-slider__tag-item(v-for="tag in tags")
-            .works-slider__tag {{tag}}
+	ul.works-slider__tags        
+		li.works-slider__tag-item(v-for="tag in tags")
+			.works-slider__tag {{tag}}
