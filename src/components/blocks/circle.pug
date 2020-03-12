@@ -1,7 +1,0 @@
-mixin circle(text, delay)    
-    - for (var i=0; i<text.length; i++)
-        li.skills__item.main-text
-            span.skills__text=`${text[i]}`
-            svg(class="persantage" viewBox="0 0 150 150" preserveAspectRatio="none")
-                circle(cx="75" cy="75" r="67" class="circle circle--under")
-                circle(cx="75" cy="75" r="67" class="circle circle--above" style="animation-delay: "+`${delay[i]}` + "s")

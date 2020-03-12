@@ -1,7 +1,0 @@
-mixin nav(itemName,mod)
-    nav(class="navigation navigation--"+mod)
-        ul.navigation__list
-            - var link = ["#welcome", "#about", "#skills", "#works", "#reviews", "#contacts"]
-            - for (var i=0; i<itemName.length; i++)
-                li.navigation__item 
-                    a(href=`${link[i]}`).navigation__link=`${itemName[i]}`
